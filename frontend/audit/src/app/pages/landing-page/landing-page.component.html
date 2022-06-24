@@ -5,7 +5,7 @@
 </div>
 
   <div class="project-list">
-      <mat-card  *ngFor="let project of projects" class="project-item">
+      <mat-card  *ngFor="let project of projects" class="project-item" [routerLink]="['/project', project.id]">
         <mat-card-header>
           <mat-card-title> <h2>{{project.projectInfo.productiveUnit}}</h2></mat-card-title>
           <mat-card-subtitle><p>{{project.projectInfo.country}} - {{project.projectInfo.region}}</p></mat-card-subtitle>

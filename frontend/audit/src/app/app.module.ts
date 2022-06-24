@@ -10,12 +10,14 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import { ProjectComponent } from './pages/project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    CreateProjectFormComponent
+    CreateProjectFormComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
