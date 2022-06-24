@@ -8,9 +8,14 @@ h2 {
 .mat-card {
     display: flex;
     background-color: mat-color($audit-primary, lighter);
-    margin: 10px;
+    margin: 10px 0 10px 0;
     &:hover {
         background-color:  mat-color($audit-primary, darker);
         color: white;
     }
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
 }
