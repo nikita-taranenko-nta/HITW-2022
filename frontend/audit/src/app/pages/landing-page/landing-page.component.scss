@@ -8,9 +8,20 @@
 }
 
 .project-item {
+    margin-bottom: 20px;
     background-color: mat-color($audit-primary, lighter);
-
     h2 {
         font-weight: bold
     }
+
+    &:hover {
+        background-color:  mat-color($audit-primary, darker);
+        color: white;
+
+        mat-card-subtitle {
+            color: lightgray;
+        }
+    }
 }
+
+

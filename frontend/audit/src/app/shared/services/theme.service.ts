@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import SummaryAction from "../../models/summaryaction";
-import QuestionAnswer from "../../models/questionanswer";
-import CapacityAndNeed from "../../models/capacityandneed";
+import {QuestionAnswer} from "../../models/question-answer";
+import {CapacityAndNeed} from "../../models/capacity-and-need";
+import {SummaryAction} from "../../models/summary-action";
 
 @Injectable({
   providedIn: 'root'

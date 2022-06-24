@@ -12,12 +12,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { ProjectComponent } from './pages/project/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
-    CreateProjectFormComponent
+    CreateProjectFormComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
