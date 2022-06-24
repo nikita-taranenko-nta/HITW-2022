@@ -1,0 +1,25 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    mat-form-field {
+        width: 80%;
+        input{
+            width: 100%;
+        }
+    }
+    & > div{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        button{
+            margin: 5px;
+        }
+    }
+}
