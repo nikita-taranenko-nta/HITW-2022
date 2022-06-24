@@ -1,0 +1,16 @@
+@import "../../../styles.scss";
+
+.add-project {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.project-item {
+    background-color: mat-color($audit-primary, lighter);
+
+    h2 {
+        font-weight: bold
+    }
+}
