@@ -21,10 +21,13 @@ CREATE TABLE question (question_id INT IDENTITY PRIMARY KEY, question_name VARCH
 		FOREIGN KEY (theme_id)
 			REFERENCES theme(theme_id));
 
-CREATE TABLE theme_score (theme_score_id INT IDENTITY PRIMARY KEY, theme_id INT, project_id INT, question_string VARCHAR(500),
+CREATE TABLE theme_score (theme_score_id INT AUTO_INCREMENT PRIMARY KEY, theme_id INT, project_id INT, score INT,
 		CONSTRAINT fk_project_theme_score
 		FOREIGN KEY (project_id)
-			REFERENCES project(project_id));
+			REFERENCES project(project_id),
+		CONSTRAINT fk_theme_theme_score
+		FOREIGN KEY (theme_id)
+			REFERENCES theme(theme_id));
 
 CREATE TABLE answer (answer_id INT IDENTITY PRIMARY KEY, answer_string VARCHAR(500), theme_score_id INT, question_id INT,
 		CONSTRAINT fk_question
