@@ -3,16 +3,16 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
- 
+
   <div class="project-list">
       <mat-card  *ngFor="let project of projects" class="project-item">
         <mat-card-header>
-          <mat-card-title> <h2>{{project.name}}</h2></mat-card-title>
-          <mat-card-subtitle><p>{{project.country}} - {{project.province}}</p></mat-card-subtitle>
+          <mat-card-title> <h2>{{project.projectInfo.productiveUnit}}</h2></mat-card-title>
+          <mat-card-subtitle><p>{{project.projectInfo.country}} - {{project.projectInfo.region}}</p></mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>{{project.producer}}</p>
-          <p>{{project.contact}}</p>
+          <p>{{project.projectInfo.producer}}</p>
+          <p>{{project.projectInfo.contactDetails}}</p>
         </mat-card-content>
       </mat-card>
   </div>
