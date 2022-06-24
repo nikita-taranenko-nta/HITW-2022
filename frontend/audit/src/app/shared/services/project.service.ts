@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import Project from "../../models/project";
+import {Project} from "../../models/project";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import SummaryAction from "../../models/summaryaction";
-import LessonsLearned from "../../models/lessonslearned";
+import {SummaryAction} from "../../models/summary-action";
+import {LessonsLearned} from "../../models/lessons-learned";
 
 @Injectable({
   providedIn: 'root'
