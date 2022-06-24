@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Project from 'src/app/models/project';
 
 @Component({
@@ -8,14 +8,17 @@ import Project from 'src/app/models/project';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
-  projects =[new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
-  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
-  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
-  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon")]
+  projects = [
+    new Project('1', "Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+    new Project('2', "Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+    new Project('3', "Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+    new Project('4', "Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon")
+  ]
 
 }

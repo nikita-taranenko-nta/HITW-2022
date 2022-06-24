@@ -1,8 +1,10 @@
 export default class Project {
-    constructor( 
-        private name : string,
-        private country: string,
-        private province: string,
-        private producer: string,
-        private contact: string){}
-    }
+  constructor(
+    public id: string,
+    public name: string,
+    public country: string,
+    public province: string,
+    public producer: string,
+    public contact: string) {
+  }
+}
