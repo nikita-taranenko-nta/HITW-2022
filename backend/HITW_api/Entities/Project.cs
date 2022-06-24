@@ -1,0 +1,1 @@
+﻿internal record Project(uint Id, string Name);

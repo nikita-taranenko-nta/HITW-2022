@@ -1,0 +1,1 @@
+﻿internal record Theme(uint Id, string Name);

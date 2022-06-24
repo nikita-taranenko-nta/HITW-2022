@@ -1,0 +1,1 @@
+﻿internal record Producer(uint Id, string Name);
