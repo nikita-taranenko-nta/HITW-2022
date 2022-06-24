@@ -1,0 +1,61 @@
+POST   /projects
+PUT    /projects/{id}
+DELETE /projects/{id}
+
+Project{
+	ProjectInfo
+	{
+		UserId: int
+		Productive unit: string Companyname
+		Country: 2 letters
+		Region/Province: string
+		Municipality/District: string
+		Producer: Boer -> search after 3 characters
+		Contact details: free text
+		Confidential information: Free text (big text area)
+	}
+	TermsOfUse
+	{
+		List<TermsOfUseAnswer> 
+		{
+			question (enum)
+			selectedanswer (enum) nullable
+			freetextfield
+		}
+		
+		Comment
+	}
+	PreAssessment = Dictionary<Question, Answer> (question = A priori question (enum))
+}
+	
+GET  /projects
+	 /projects/{id}
+	 Thema {Id, Name, List<Question> questions} Question {Id, Name}
+	
+PUT /theme/{id} => 
+List<QuestionAnswer> 
+	{
+		question id, string answer
+	}, 
+List<CapacityAndNeed>
+	{
+		string Actor, 
+		string Type, 
+		string Theme, 
+		string People, 
+		String WaysItHelped
+	} 
+totalscore int, 
+string free text field
+
+PUT /theme/{id}/summaryactions =>
+List<SummaryAction> => SummaryAction {themeId, string producerActions, string teamActions}
+
+PUT /projects/{id}/summaryactions =>
+SummaryAction {string producerActions, string teamActions}
+
+PUT /projects/{id}/diagnosis/lessonslearned =>
+LessonLearned{string producerLesson, string teamLesson}
+
+POST/PUT /projects/{id}/postassessment
+
