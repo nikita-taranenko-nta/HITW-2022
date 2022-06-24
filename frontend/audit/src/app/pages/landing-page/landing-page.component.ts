@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Project from 'src/app/models/project';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,5 +12,10 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  projects =[new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon"),
+  new Project("Project 1", "Belgium", "West-Vlaanderen", "???", "Telefoon")]
 
 }

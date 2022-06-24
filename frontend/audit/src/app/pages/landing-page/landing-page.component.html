@@ -1,7 +1,16 @@
 <p>landing-page works!</p>
 
 <div class="example-button-container">
-    <button mat-fab color="primary" [routerLink]="['create/1']">
-      <mat-icon>add</mat-icon>
-    </button>
+  <button mat-fab color="primary" [routerLink]="['create/1']">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
+ 
+  <div class="project-list">
+    <div *ngFor="let project of projects">
+      <h2>{{project.name}}</h2>
+      <p>{{project.producer}}</p>
+      <p>{{project.country}} - {{project.province}}</p>
+    </div>
   </div>
