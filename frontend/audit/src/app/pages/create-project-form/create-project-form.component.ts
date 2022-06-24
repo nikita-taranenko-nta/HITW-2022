@@ -33,8 +33,9 @@ export class CreateProjectFormComponent implements OnInit {
   }
   save() {
     console.log(this.projectInfoForm);
+    this.router.navigate(['']);
   }
   cancel(){
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 }
