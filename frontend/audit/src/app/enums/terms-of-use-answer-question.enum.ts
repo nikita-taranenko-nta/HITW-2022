@@ -1,3 +1,6 @@
 export enum TermsOfUseAnswerQuestion {
-  QUESTION_1
+  Producer_Radio,
+  Who,
+  AssignedBy_Radio,
+  Comment
 }

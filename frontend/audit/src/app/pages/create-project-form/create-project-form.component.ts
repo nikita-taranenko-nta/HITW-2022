@@ -7,6 +7,8 @@ import { ProjectInfo } from 'src/app/models/project-info';
 import { APrioriQuestion } from 'src/app/enums/a-priori-question';
 import { Question } from 'src/app/models/question';
 import { TermsOfUse } from 'src/app/models/terms-of-use';
+import { TermsOfUseAnswerQuestion } from 'src/app/enums/terms-of-use-answer-question.enum';
+import { TermsOfUseAnswer } from 'src/app/models/terms-of-use-answer';
 
 type InputControl = {
   type: 'input',
@@ -21,7 +23,14 @@ type TextAreaControl = {
   label: string,
 }
 
-type GenericControl = InputControl | TextAreaControl;
+type RadioControl = {
+  type: 'radio',
+  key: string,
+  options: string[],
+  defaultValue?: string
+}
+
+type GenericControl = InputControl | TextAreaControl | RadioControl;
 type FormDescription = GenericControl[];
 @Component({
   selector: 'app-create-project-form',
@@ -42,13 +51,24 @@ export class CreateProjectFormComponent implements OnInit {
     details: new FormControl('')
   })
 
-  termsOfUseForm = new FormGroup({
-
-  });
+  termsOfUseForm!: FormGroup;
+  termsOfUseFormDescription: FormDescription = []
 
   aPrioriForm!: FormGroup;
   aPrioriFormDescription: FormDescription = []
 
+
+  private aprioriQuestionDictionary = {
+    [APrioriQuestion.Activity]: "A short description of the activity",
+    [APrioriQuestion.Environmental]: "A short description of the environmental context",
+    [APrioriQuestion.ActivityAndEnvironment]: "Mutual effects between the environment and the activity",
+  }
+  private termsOfUseQuestionDictionary = {
+    [TermsOfUseAnswerQuestion.Producer_Radio]: "Which of the following terms best describes the producer?",
+    [TermsOfUseAnswerQuestion.Who]: "Who participates in the application of this questionnaire?",
+    [TermsOfUseAnswerQuestion.AssignedBy_Radio]: "The indicator scores are assigned by:",
+    [TermsOfUseAnswerQuestion.Comment]: "Potential comments"
+  }
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -58,13 +78,31 @@ export class CreateProjectFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.farmerId = this.route.snapshot.paramMap.get('farmerid');
-    this.aPrioriFormDescription = this.aprioriQuestions().map(q => {
+    this.aPrioriFormDescription = Object.keys(this.aprioriQuestionDictionary).map((key) => {
       return {
         type: 'textArea',
-        key: q.id,
+        key: key,
         defaultValue: '',
-        label: q.name
+        label: this.aprioriQuestionDictionary[key]
       } as GenericControl
+    });
+    this.termsOfUseFormDescription = Object.keys(this.termsOfUseQuestionDictionary).map((key) => {
+
+      return TermsOfUseAnswerQuestion[key].toLowerCase().includes('radio') ?
+        {
+          type: 'radio',
+          key: key,
+          options: ["option 1", "option 2", "option 3"],
+          label: this.termsOfUseQuestionDictionary[key],
+          defaultValue: ''
+        } as GenericControl :
+        {
+          type: 'textArea',
+          key: key,
+          defaultValue: '',
+          label: this.termsOfUseQuestionDictionary[key]
+        } as GenericControl
+
     });
 
     this.aPrioriForm = new FormGroup(
@@ -72,36 +110,36 @@ export class CreateProjectFormComponent implements OnInit {
         return { ...memo, [fieldDesc.key]: new FormControl(fieldDesc.defaultValue || '') }
       }, {})
     )
+
+    this.termsOfUseForm = new FormGroup(
+      this.termsOfUseFormDescription.reduce((memo, fieldDesc) => {
+        return { ...memo, [fieldDesc.key]: new FormControl(fieldDesc.defaultValue || '') }
+      }, {})
+    )
   }
-  aprioriQuestions(): Array<Question> {
-    let questions = [];
-    for (const question in APrioriQuestion) {
-      if (!isNaN(Number(question))) {
-        const enumQ = Number(question) as APrioriQuestion;
-        questions.push({ id: question, name: this.getAPrioriQuestionFromEnum(enumQ) } as Question)
-      }
-    }
-    return questions;
-  }
-  getAPrioriQuestionFromEnum(questionEnum: APrioriQuestion) {
-    switch (questionEnum) {
-      case APrioriQuestion.Activity:
-        return "A short description of the activity";
-      case APrioriQuestion.ActivityAndEnvironment:
-        return "Mutual effects between the environment and the activity";
-      case APrioriQuestion.Environmental:
-        return "A short description of the environmental context";
-    }
-  }
+
   getPreAssesmentAnswers() {
     const map: Map<APrioriQuestion, string> = new Map();
     for (const control in this.aPrioriForm.controls) {
-      map.set(Number(control) as APrioriQuestion , this.aPrioriForm.get(control).value )
+      map.set(Number(control) as APrioriQuestion, this.aPrioriForm.get(control).value)
     }
     return map;
   }
+getTermOfUseAnswers(){
+  let answers: TermsOfUseAnswer[] = [];
+  for(const control in this.termsOfUseForm.controls){
+    if(TermsOfUseAnswerQuestion[control] !== TermsOfUseAnswerQuestion.Comment){
+      answers.push({
+        freeTextField: this.termsOfUseForm.get(control).value,
+        question: TermsOfUseAnswerQuestion[control],
+        selectedAnswer: this.termsOfUseForm.get(control).value
+      })
+    }
+  }
+  return answers;
+}
   save() {
-     this.getPreAssesmentAnswers();
+    this.getPreAssesmentAnswers();
     let project = {
       projectInfo: {
         userId: this.farmerId,
@@ -114,15 +152,17 @@ export class CreateProjectFormComponent implements OnInit {
         productiveUnit: this.projectInfoForm.get('name').value
       } as ProjectInfo,
       termsOfUse: {
-
+        comment: this.termsOfUseForm.get('' + TermsOfUseAnswerQuestion.Comment).value,
+        termsOfUseAnswers: this.getTermOfUseAnswers()
       } as TermsOfUse,
       preAssessment: this.getPreAssesmentAnswers()
 
     } as Project;
-    console.log(project);
+    this.getTermOfUseAnswers()
+    console.log(project, this.termsOfUseForm.value);
     this.projectService.postProject(project);
 
-    this.router.navigate(['']);
+    // this.router.navigate(['']);
   }
   cancel() {
     this.router.navigate(['']);
