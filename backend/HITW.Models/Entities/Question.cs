@@ -16,7 +16,7 @@ namespace HITW.Models.Entities
         public string Data { get; set; }
         public int? ThemeId { get; set; }
 
-        public virtual Theme Theme { get; set; }
+        //public virtual Theme Theme { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
     }
 }

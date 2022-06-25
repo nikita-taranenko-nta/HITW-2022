@@ -9,10 +9,14 @@ import { Question } from 'src/app/models/question';
 })
 export class ScoreQuestionComponent implements OnInit {
   @Input() public question: Question
-  @Input() public form: FormGroup
+  @Input() public themeId: string
+  // @Input() public form: FormGroup
+  @Input() public valueChanges:  (themeId: string , questionId: string, value:string)=> {};
   constructor() {}
 
   ngOnInit(): void {
   }
-
+ onKeyPress(e:any ,questionId: string){
+  this.valueChanges(this.themeId, questionId, e.target.value);
+ }
 }

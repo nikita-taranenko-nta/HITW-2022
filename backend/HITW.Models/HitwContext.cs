@@ -351,10 +351,10 @@ namespace HITW.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Theme)
-                    .WithMany(p => p.Questions)
-                    .HasForeignKey(d => d.ThemeId)
-                    .HasConstraintName("FK_Theme_Question");
+                //entity.HasOne(d => d.Theme)
+                //    .WithMany(p => p.Questions)
+                //    .HasForeignKey(d => d.ThemeId)
+                //    .HasConstraintName("FK_Theme_Question");
             });
 
             modelBuilder.Entity<Submission>(entity =>

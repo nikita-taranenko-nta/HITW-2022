@@ -86,7 +86,9 @@ app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedExcept
 
 app.MapGet("/questionnaire", (IDatabaseRepository databaseRepository) =>
 {
-    //List<Theme> themes =  databaseRepository.GetQuestionnaire();
+    List<Theme> themes =  databaseRepository.GetQuestionnaire();
+
+    return themes;
 });
 
 app.Run();
