@@ -5,13 +5,18 @@ import {environment} from "../../../environments/environment";
 import {QuestionAnswer} from "../../models/question-answer";
 import {CapacityAndNeed} from "../../models/capacity-and-need";
 import {SummaryAction} from "../../models/summary-action";
+import {Thema} from "../../models/thema";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService {
+export class ThemaService {
 
   constructor(private readonly http: HttpClient) {
+  }
+
+  public getQuestionnaire(): Observable<Thema[]> {
+    return this.http.get<Thema[]>(environment.apiUrl + '/questionnaire');
   }
 
   public putThemeQuestionAnswers(themeId: string, questionAnswers: QuestionAnswer[]): Observable<string> {
