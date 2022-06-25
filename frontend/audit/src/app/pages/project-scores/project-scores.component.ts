@@ -17,6 +17,7 @@ export class ProjectScoresComponent implements OnInit {
   public project: Project;
   public themas: Thema[];
   displayedColumns = ['level','justification', 'score']
+  displayedColumns2 = ['actors','typeOfSupport','themes','peopleInvolved', 'waysItHelped']
    scoreDescription = { 
     1:[
       {score: 0, level: "Nil", justification: "Is not aware that the environment has an impact on the activity"},
