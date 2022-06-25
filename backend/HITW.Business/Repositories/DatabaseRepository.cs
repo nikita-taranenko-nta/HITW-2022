@@ -12,7 +12,7 @@ public class DatabaseRepository : IDatabaseRepository
         _hitwContext = hitwContext;
     }
 
-    public Project? GetProject(int id)
+    public Project? GetProjects(int id)
     {
         return _hitwContext.Project.SingleOrDefault(x => x.Id == id);
     }
@@ -87,20 +87,27 @@ public class DatabaseRepository : IDatabaseRepository
         _hitwContext.SaveChanges();
     }
 
-    public List<Project> GetProjects(int personId)
+    public List<Project> GetProjects()
     {
-        return _hitwContext.Project.Where(x => x.PersonId == personId).ToList();
+        //return _hitwContext.Project.Where(x => x.PersonId == personId).ToList();
+        return _hitwContext.Project.ToList();
+    }
+
+    public List<Theme> GetQuestionnaire()
+    {
+         throw new NotImplementedException();
     }
 }
 
 public interface IDatabaseRepository
 {
-    Project?      GetProject(int id);
-    List<Project> GetProjects(int personId);
+    Project?      GetProjects(int id);
+    List<Project> GetProjects();
     void          AddProject(Project project);
     void          UpdateProject(Project project);
     void          RemoveProject(int id);
     void          UpdateTheme(Theme theme);
     void          UpdateThemeIdentifiedActions(int themeScoreId, string? producerActions, string? teamActions);
     void          UpdateLessonsLearned(int projectId, bool isProducer, string answer);
+    List<Theme> GetQuestionnaire();
 }

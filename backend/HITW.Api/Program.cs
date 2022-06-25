@@ -22,7 +22,7 @@ app.UseSwaggerUI(options =>
 
 
 app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProjects(id));
-//app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
+app.MapGet("/projects",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
 
 app.MapPost("/project", (Project project , IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
 
@@ -39,6 +39,11 @@ app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) 
 });
 app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
 //app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
+
+app.MapGet("/questionnaire", (IDatabaseRepository databaseRepository) =>
+{
+    List<Theme> themes =  databaseRepository.GetQuestionnaire();
+});
 
 app.Run();
 
