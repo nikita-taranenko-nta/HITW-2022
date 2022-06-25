@@ -134,3 +134,13 @@ In what way(s) did it help?', '4');
 INSERT INTO Question (Data, ThemeId)
 VALUES ('Do you think (in your private capacity or in your organisation’s) you hold the knowledge and technical, organisational and/or financial capacities to implement the actions identified in theme 3? 
 What kind of support would you need?', '4');
+
+INSERT INTO Theme (Name)
+VALUES ('TERMS OF USE');
+
+INSERT INTO TermsOfUseQuestion (Data)
+VALUES ('WHICH OF THE FOLLOWING TERMS BEST DESCRIBES THE PRODUCER?');
+INSERT INTO TermsOfUseQuestion (Data)
+VALUES ('WHO PARTICIPATES IN THE APPLICATION OF THIS QUESTIONNAIRE?');
+INSERT INTO TermsOfUseQuestion (Data)
+VALUES ('THE INDICATOR SCORES ARE ASSIGNED BY:');
