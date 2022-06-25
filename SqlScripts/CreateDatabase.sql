@@ -152,3 +152,23 @@ CREATE TABLE Submission (Id INT IDENTITY PRIMARY KEY, Comment VARCHAR(500), Pict
 		CONSTRAINT FK_Commitment_Submission
 		FOREIGN KEY (CommitmentId)
 			REFERENCES Commitment(Id));
+			
+			
+CREATE TABLE PrioriPosterioriQuestion (Id INT IDENTITY PRIMARY KEY,
+ Question VARCHAR(500),
+  ProjectId INT,
+		CONSTRAINT FK_Project_PrioriPosterioriQuestions
+		FOREIGN KEY (ProjectId)
+			REFERENCES Project(Id));
+
+CREATE TABLE PrioriPosterioriValue (Id INT IDENTITY PRIMARY KEY,
+ Priori VARCHAR(500),
+ Posteriori VARCHAR(500),
+  ProjectId INT,
+  PrioriPosterioriQuestionId INT,
+		CONSTRAINT FK_Project_ProjectAssessment
+		FOREIGN KEY (ProjectId)
+			REFERENCES Project(Id),
+		CONSTRAINT FK_PrioriPosterioriQuestion_PrioriPosterioriValue
+		FOREIGN KEY (PrioriPosterioriQuestionId)
+			REFERENCES PrioriPosterioriQuestion(Id));
