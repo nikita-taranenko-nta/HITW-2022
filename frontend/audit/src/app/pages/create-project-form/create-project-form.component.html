@@ -60,7 +60,22 @@
         </div>
     </mat-step>
     <mat-step label="A priori">
-        <form action="" [formGroup]="aPrioriForm" class="form"></form>
+        <form [formGroup]="aPrioriForm" class="form">
+            <div *ngFor="let control of aPrioriFormDescription"  class="formControlContainer">          
+                <div *ngIf="control.type === 'input'">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>{{control.label}}</mat-label>
+                        <input matInput [placeholder]="contol.label" [formControlName]="control.key">
+                    </mat-form-field>
+                </div>          
+                <div *ngIf="control.type === 'textArea'">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>{{control.label}}</mat-label>
+                        <textarea matInput [formControlName]="control.key"></textarea>
+                    </mat-form-field>
+                </div>   
+            </div>
+          </form>
         <div class="buttons">
         <button mat-button matStepperPrevious type="button">Back</button>
             <button mat-raised-button color="primary" (click)="save()">
