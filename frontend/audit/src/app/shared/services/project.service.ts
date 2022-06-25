@@ -4,7 +4,7 @@ import {Project} from "../../models/project";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {SummaryAction} from "../../models/summary-action";
-import {LessonsLearned} from "../../models/lessons-learned";
+import {LessonLearned} from "../../models/lesson-learned";
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class ProjectService {
     return this.http.put<string>(environment.apiUrl + `/projects/${projectId}/summaryactions`, summaryAction);
   }
 
-  public putDiagnosisLessonsLearned(projectId: string, lessonsLearned: LessonsLearned): Observable<string> {
+  public putDiagnosisLessonsLearned(projectId: string, lessonsLearned: LessonLearned): Observable<string> {
     return this.http.put<string>(environment.apiUrl + `/projects/${projectId}/lessonslearned`, lessonsLearned);
   }
 

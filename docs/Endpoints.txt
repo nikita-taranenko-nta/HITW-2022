@@ -55,7 +55,28 @@ PUT /projects/{id}/summaryactions =>
 SummaryAction {string producerActions, string teamActions}
 
 PUT /projects/{id}/diagnosis/lessonslearned =>
-LessonLearned{string producerLesson, string teamLesson}
+LessonLearned{boolean isProducer, string answer}
 
 POST/PUT /projects/{id}/postassessment
 
+
+
+
+
+Commitments:
+
+POST /projects/{id}/commitments
+PUT /projects/{id}/commitments
+GET /projects/{id}/commitments
+
+ProjectCommitment {List<Commitment> commitments, string comments}
+Commitment {boolean isProducer, string commitment, string expectedResults, datetime expectedDeadline}
+
+Commitment Assessments:
+
+POST /projects/{id}/commitments/assessments
+GET /projects/{id}/commitments/assessments
+
+ProjectAssessment {List<Assessment> projectAssessments, string comments, List<LessonLearned> lessonsLearned}
+Assessment {List<CommitmentAssessment> commitmentAssessments, boolean isProducer, int progressAssessment}
+CommitmentAssessment {string actualResults, string recommendations, datetime newDeadline}

@@ -1,27 +1,14 @@
-<h2>{{project.projectInfo.productiveUnit}}</h2>
+<h2  *ngIf="project">{{project.projectInfo.productiveUnit}}</h2>
 
-<mat-horizontal-stepper linear="false" #stepper>
-    <mat-step>
-        <ng-template matStepLabel>Effects of the environment on the activity</ng-template>
-        <!-- <form action="" [formGroup]="environmentOnActivityForm" class="form">
-        </form> -->
+<mat-horizontal-stepper *ngIf="themas" linear="false" #stepper>
+    <mat-step  *ngFor="let thema of themas">
+        <ng-template matStepLabel>{{thema.name}}</ng-template>
+        <form action=""  class="form">
+            <score-question *ngFor="let question of thema.questions" [question]="question">
+            </score-question>
+        </form>
         <div class="buttons">
             <button mat-button matStepperNext type="button">Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Effects of the activity on the environment">
-        <!-- <form action="" [formGroup]="acitivyOnEnvironmentForm" class="form">
-
-        </form> -->
-        <div class="buttons">
-            <button mat-button matStepperPrevious type="button">Back</button>
-            <button mat-button matStepperNext type="button">Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Willingness to commit">
-        <!-- <form action="" [formGroup]="willingnessToCommitForm" class="form"></form> -->
-        <div class="buttons">Y
-        <button mat-button matStepperPrevious type="button">Back</button>
         </div>
     </mat-step>
     <mat-step label="Capacities and needs">
