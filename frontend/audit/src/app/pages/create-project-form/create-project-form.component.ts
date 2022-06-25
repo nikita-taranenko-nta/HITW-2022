@@ -23,6 +23,13 @@ export class CreateProjectFormComponent implements OnInit {
     details: new FormControl('')
   })
 
+  termsOfUseForm = new FormGroup({
+
+  });
+
+  aPrioriForm = new FormGroup({
+
+  });
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +52,8 @@ export class CreateProjectFormComponent implements OnInit {
         region: this.projectInfoForm.get('region').value,
         municipality: this.projectInfoForm.get('district').value,
         productiveUnit: this.projectInfoForm.get('name').value
-      } as ProjectInfo
+      } as ProjectInfo,
+
     } as Project;
 
     this.projectService.postProject(project);

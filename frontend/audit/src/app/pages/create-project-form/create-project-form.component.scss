@@ -6,7 +6,7 @@ h1{
     display: flex;
     flex-direction: column;
     mat-form-field {
-        width: 80%;
+        width: 100%;
         input{
             width: 100%;
         }
@@ -18,13 +18,12 @@ h1{
         justify-content: space-between;
         align-items: baseline;
     }
-    .buttons{
-        width: 80%;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        button{
-            margin: 5px;
-        }
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    button{
+        margin: 5px;
     }
 }
