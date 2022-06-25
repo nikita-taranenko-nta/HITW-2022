@@ -79,4 +79,4 @@ GET /projects/{id}/commitments/assessments
 
 ProjectAssessment {List<Assessment> projectAssessments, string comments, List<LessonLearned> lessonsLearned}
 Assessment {List<CommitmentAssessment> commitmentAssessments, boolean isProducer, int progressAssessment}
-CommitmentAssessment {string commitmentId, string actualResults, string recommendations, datetime newDeadline}
+CommitmentAssessment {string actualResults, string recommendations, datetime newDeadline}
