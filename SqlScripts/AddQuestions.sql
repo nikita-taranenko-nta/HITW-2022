@@ -151,3 +151,16 @@ INSERT INTO PrioriPosterioriQuestion (Question)
 VALUES ('SHORT DESCRIPTION OF THE ENVIRONMENTAL CONTEXT');
 INSERT INTO PrioriPosterioriQuestion (Question)
 VALUES ('MUTUAL EFFECTS BETWEEN THE ENVIRONMENT AND THE ACTIVITY');
+
+INSERT INTO Person (firstname, lastname)
+VALUES ('stephane', 'vyt');
+INSERT INTO Person (firstname, lastname)
+VALUES ('nikita', 'mazespin');
+
+INSERT INTO Person (firstname, lastname)
+VALUES ('victor', 'vman');
+
+INSERT INTO Person (firstname, lastname)
+VALUES ('birgen', 'big beast');
+
+
