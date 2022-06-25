@@ -5,22 +5,20 @@ using System.Collections.Generic;
 
 namespace HITW.Models.Entities
 {
-    public partial class Commitment
+    public partial class Assessment
     {
-        public Commitment()
+        public Assessment()
         {
             CommitmentAssessment = new HashSet<CommitmentAssessment>();
-            Submission = new HashSet<Submission>();
         }
 
         public int Id { get; set; }
-        public string Description { get; set; }
-        public DateTime? TargetDate { get; set; }
-        public int? ProjectCommitmentId { get; set; }
+        public int? ProgressAssessment { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? ProjectAssessmentId { get; set; }
         public bool? IsProducer { get; set; }
 
-        public virtual ProjectCommitment ProjectCommitment { get; set; }
+        public virtual ProjectAssessment ProjectAssessment { get; set; }
         public virtual ICollection<CommitmentAssessment> CommitmentAssessment { get; set; }
-        public virtual ICollection<Submission> Submission { get; set; }
     }
 }

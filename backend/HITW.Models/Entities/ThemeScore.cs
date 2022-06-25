@@ -10,15 +10,20 @@ namespace HITW.Models.Entities
         public ThemeScore()
         {
             Answer = new HashSet<Answer>();
+            CapAndNeed = new HashSet<CapAndNeed>();
+            IdentifiedAction = new HashSet<IdentifiedAction>();
         }
 
         public int Id { get; set; }
         public int? ThemeId { get; set; }
         public int? ProjectId { get; set; }
         public int? Score { get; set; }
+        public string Comment { get; set; }
 
         public virtual Project Project { get; set; }
         public virtual Theme Theme { get; set; }
         public virtual ICollection<Answer> Answer { get; set; }
+        public virtual ICollection<CapAndNeed> CapAndNeed { get; set; }
+        public virtual ICollection<IdentifiedAction> IdentifiedAction { get; set; }
     }
 }

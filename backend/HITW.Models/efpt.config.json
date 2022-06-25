@@ -18,7 +18,27 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Assessment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CapAndNeed]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Commitment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CommitmentAssessment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CommitmentContract]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[IdentifiedAction]",
          "ObjectType": 0
       },
       {
@@ -26,7 +46,35 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[PrioriPosterioriQuestion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PrioriPosterioriValue]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Project]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProjectAssessment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProjectAssessmentLessonLearned]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProjectCommitment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProjectLessonLearned]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProjectTermsOfUseAnswer]",
          "ObjectType": 0
       },
       {
@@ -35,6 +83,14 @@
       },
       {
          "Name": "[dbo].[Submission]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TermsOfUseAnswer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TermsOfUseQuestion]",
          "ObjectType": 0
       },
       {

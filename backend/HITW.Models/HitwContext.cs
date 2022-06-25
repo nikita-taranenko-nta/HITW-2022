@@ -21,11 +21,25 @@ namespace HITW.Models
         }
 
         public virtual DbSet<Answer> Answer { get; set; }
+        public virtual DbSet<Assessment> Assessment { get; set; }
+        public virtual DbSet<CapAndNeed> CapAndNeed { get; set; }
         public virtual DbSet<Commitment> Commitment { get; set; }
+        public virtual DbSet<CommitmentAssessment> CommitmentAssessment { get; set; }
+        public virtual DbSet<CommitmentContract> CommitmentContract { get; set; }
+        public virtual DbSet<IdentifiedAction> IdentifiedAction { get; set; }
         public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<PrioriPosterioriQuestion> PrioriPosterioriQuestion { get; set; }
+        public virtual DbSet<PrioriPosterioriValue> PrioriPosterioriValue { get; set; }
         public virtual DbSet<Project> Project { get; set; }
+        public virtual DbSet<ProjectAssessment> ProjectAssessment { get; set; }
+        public virtual DbSet<ProjectAssessmentLessonLearned> ProjectAssessmentLessonLearned { get; set; }
+        public virtual DbSet<ProjectCommitment> ProjectCommitment { get; set; }
+        public virtual DbSet<ProjectLessonLearned> ProjectLessonLearned { get; set; }
+        public virtual DbSet<ProjectTermsOfUseAnswer> ProjectTermsOfUseAnswer { get; set; }
         public virtual DbSet<Question> Question { get; set; }
         public virtual DbSet<Submission> Submission { get; set; }
+        public virtual DbSet<TermsOfUseAnswer> TermsOfUseAnswer { get; set; }
+        public virtual DbSet<TermsOfUseQuestion> TermsOfUseQuestion { get; set; }
         public virtual DbSet<Theme> Theme { get; set; }
         public virtual DbSet<ThemeScore> ThemeScore { get; set; }
 
@@ -47,7 +61,45 @@ namespace HITW.Models
                 entity.HasOne(d => d.ThemeScore)
                     .WithMany(p => p.Answer)
                     .HasForeignKey(d => d.ThemeScoreId)
-                    .HasConstraintName("FK_ThemeScore");
+                    .HasConstraintName("FK_ThemeScoreAnswer");
+            });
+
+            modelBuilder.Entity<Assessment>(entity =>
+            {
+                entity.Property(e => e.CreatedDate).HasColumnType("date");
+
+                entity.HasOne(d => d.ProjectAssessment)
+                    .WithMany(p => p.Assessment)
+                    .HasForeignKey(d => d.ProjectAssessmentId)
+                    .HasConstraintName("FK_ProjectAssessment_Assessment");
+            });
+
+            modelBuilder.Entity<CapAndNeed>(entity =>
+            {
+                entity.Property(e => e.Actor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CapTheme)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PeopleInvolved)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SupportType)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.WaysItHelped)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ThemeScore)
+                    .WithMany(p => p.CapAndNeed)
+                    .HasForeignKey(d => d.ThemeScoreId)
+                    .HasConstraintName("FK_ThemeScoreCapAndNeed");
             });
 
             modelBuilder.Entity<Commitment>(entity =>
@@ -58,10 +110,53 @@ namespace HITW.Models
 
                 entity.Property(e => e.TargetDate).HasColumnType("date");
 
-                entity.HasOne(d => d.Project)
+                entity.HasOne(d => d.ProjectCommitment)
                     .WithMany(p => p.Commitment)
+                    .HasForeignKey(d => d.ProjectCommitmentId)
+                    .HasConstraintName("FK_ProjectCommitment_Commitment");
+            });
+
+            modelBuilder.Entity<CommitmentAssessment>(entity =>
+            {
+                entity.Property(e => e.ActualResult)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreatedDate).HasColumnType("date");
+
+                entity.HasOne(d => d.Assessment)
+                    .WithMany(p => p.CommitmentAssessment)
+                    .HasForeignKey(d => d.AssessmentId)
+                    .HasConstraintName("FK_Assessment_CommitmentAssessment");
+
+                entity.HasOne(d => d.Commitment)
+                    .WithMany(p => p.CommitmentAssessment)
+                    .HasForeignKey(d => d.CommitmentId)
+                    .HasConstraintName("FK_Commitment_CommitmentAssessment");
+            });
+
+            modelBuilder.Entity<CommitmentContract>(entity =>
+            {
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.CommitmentContract)
                     .HasForeignKey(d => d.ProjectId)
-                    .HasConstraintName("FK_Project_Commitment");
+                    .HasConstraintName("FK_Project_CommitmentContract");
+            });
+
+            modelBuilder.Entity<IdentifiedAction>(entity =>
+            {
+                entity.Property(e => e.Actor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Data)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ThemeScore)
+                    .WithMany(p => p.IdentifiedAction)
+                    .HasForeignKey(d => d.ThemeScoreId)
+                    .HasConstraintName("FK_ThemeScoreAction");
             });
 
             modelBuilder.Entity<Person>(entity =>
@@ -75,16 +170,150 @@ namespace HITW.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<PrioriPosterioriQuestion>(entity =>
+            {
+                entity.Property(e => e.Question)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.PrioriPosterioriQuestion)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project_PrioriPosterioriQuestions");
+            });
+
+            modelBuilder.Entity<PrioriPosterioriValue>(entity =>
+            {
+                entity.Property(e => e.Posteriori)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Priori)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.PrioriPosterioriQuestion)
+                    .WithMany(p => p.PrioriPosterioriValue)
+                    .HasForeignKey(d => d.PrioriPosterioriQuestionId)
+                    .HasConstraintName("FK_PrioriPosterioriQuestion_PrioriPosterioriValue");
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.PrioriPosterioriValue)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project_PrioriPosterioriValue");
+            });
+
             modelBuilder.Entity<Project>(entity =>
             {
+                entity.Property(e => e.ConfidentialInformation).IsUnicode(false);
+
+                entity.Property(e => e.ContactDetails).IsUnicode(false);
+
+                entity.Property(e => e.Country)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Municipality)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ProducerLesson).IsUnicode(false);
+
+                entity.Property(e => e.ProductiveUnit)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Region)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TeamLesson).IsUnicode(false);
+
+                entity.Property(e => e.TermsOfUseComment).IsUnicode(false);
+
                 entity.HasOne(d => d.Person)
-                    .WithMany(p => p.Project)
+                    .WithMany(p => p.ProjectPerson)
                     .HasForeignKey(d => d.PersonId)
-                    .HasConstraintName("FK_Person");
+                    .HasConstraintName("FK_Person_Project");
+
+                entity.HasOne(d => d.Producer)
+                    .WithMany(p => p.ProjectProducer)
+                    .HasForeignKey(d => d.ProducerId)
+                    .HasConstraintName("FK_Producer");
+            });
+
+            modelBuilder.Entity<ProjectAssessment>(entity =>
+            {
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.ProjectAssessment)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project_ProjectAssessment");
+            });
+
+            modelBuilder.Entity<ProjectAssessmentLessonLearned>(entity =>
+            {
+                entity.Property(e => e.Data)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.ProjectAssessment)
+                    .WithMany(p => p.ProjectAssessmentLessonLearned)
+                    .HasForeignKey(d => d.ProjectAssessmentId)
+                    .HasConstraintName("FK_ProjectAssessment_LessonLearned");
+            });
+
+            modelBuilder.Entity<ProjectCommitment>(entity =>
+            {
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.ProjectCommitment)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project_ProjectCommitment");
+            });
+
+            modelBuilder.Entity<ProjectLessonLearned>(entity =>
+            {
+                entity.Property(e => e.Data)
+                    .HasMaxLength(1000)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.ProjectLessonLearned)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project_LessonLearned");
+            });
+
+            modelBuilder.Entity<ProjectTermsOfUseAnswer>(entity =>
+            {
+                entity.Property(e => e.Data)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Project)
+                    .WithMany(p => p.ProjectTermsOfUseAnswer)
+                    .HasForeignKey(d => d.ProjectId)
+                    .HasConstraintName("FK_Project");
+
+                entity.HasOne(d => d.TermsOfUseAnswer)
+                    .WithMany(p => p.ProjectTermsOfUseAnswer)
+                    .HasForeignKey(d => d.TermsOfUseAnswerId)
+                    .HasConstraintName("FK_TermsOfUseAnswer");
+
+                entity.HasOne(d => d.TermsOfUseQuestion)
+                    .WithMany(p => p.ProjectTermsOfUseAnswer)
+                    .HasForeignKey(d => d.TermsOfUseQuestionId)
+                    .HasConstraintName("FK_ProjectTermsOfUseQuestion");
             });
 
             modelBuilder.Entity<Question>(entity =>
@@ -100,7 +329,7 @@ namespace HITW.Models
                 entity.HasOne(d => d.Theme)
                     .WithMany(p => p.Question)
                     .HasForeignKey(d => d.ThemeId)
-                    .HasConstraintName("FK_Theme");
+                    .HasConstraintName("FK_Theme_Question");
             });
 
             modelBuilder.Entity<Submission>(entity =>
@@ -112,7 +341,26 @@ namespace HITW.Models
                 entity.HasOne(d => d.Commitment)
                     .WithMany(p => p.Submission)
                     .HasForeignKey(d => d.CommitmentId)
-                    .HasConstraintName("FK_Commitment");
+                    .HasConstraintName("FK_Commitment_Submission");
+            });
+
+            modelBuilder.Entity<TermsOfUseAnswer>(entity =>
+            {
+                entity.Property(e => e.Data)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.TermsOfUseQuestion)
+                    .WithMany(p => p.TermsOfUseAnswer)
+                    .HasForeignKey(d => d.TermsOfUseQuestionId)
+                    .HasConstraintName("FK_TermsOfUseAnswerQuestion");
+            });
+
+            modelBuilder.Entity<TermsOfUseQuestion>(entity =>
+            {
+                entity.Property(e => e.Data)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Theme>(entity =>
@@ -124,6 +372,8 @@ namespace HITW.Models
 
             modelBuilder.Entity<ThemeScore>(entity =>
             {
+                entity.Property(e => e.Comment).IsUnicode(false);
+
                 entity.HasOne(d => d.Project)
                     .WithMany(p => p.ThemeScore)
                     .HasForeignKey(d => d.ProjectId)

@@ -1,7 +1,6 @@
 using HITW.Business.Repositories;
 using HITW.Models;
 using HITW.Models.Entities;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -10,7 +9,6 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<HitwContext>();
 builder.Services.AddScoped<IDatabaseRepository, DatabaseRepository>();
-
 
 var app = builder.Build();
 app.UseSwagger();
@@ -22,23 +20,21 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
-app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProject(id));
-app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProject());
 
-app.MapPost("/project", (Project p , IDatabaseRepository databaseRepository) => databaseRepository.SetProject(p));
+app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProjects(id));
+app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
 
-//app.MapPut("/project/{id}", (int id, Project p, DatabaseRepository databaseRepository) =>
-//{
-//    databaseRepository.UpdateProject(p)
-//});
+app.MapPost("/project", (Project p , IDatabaseRepository databaseRepository) => databaseRepository.UpdateProject(p));
+
+app.MapPut("/project/{id}", (int id, Project p, IDatabaseRepository databaseRepository) => databaseRepository.Update(p));
 
 
 app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) =>
 {
-    var item = databaseRepository.GetProject(id);
+    var item = databaseRepository.GetProjects(id);
     if (item == null)
         return Results.NotFound();
-    InMemoryProjects.Remove(item);
+    databaseRepository.Remove(item);
     return Results.Ok();
 });
 app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
@@ -48,8 +44,6 @@ app.Run();
 
 public partial class Program
 {
-    internal static List<Project> InMemoryProjects = new();
-    internal static List<Theme> InMemoryThemeScore = new();
 }
 
 //-UserId: int

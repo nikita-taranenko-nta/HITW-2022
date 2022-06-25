@@ -9,16 +9,39 @@ namespace HITW.Models.Entities
     {
         public Project()
         {
-            Commitment = new HashSet<Commitment>();
+            CommitmentContract = new HashSet<CommitmentContract>();
+            PrioriPosterioriQuestion = new HashSet<PrioriPosterioriQuestion>();
+            PrioriPosterioriValue = new HashSet<PrioriPosterioriValue>();
+            ProjectAssessment = new HashSet<ProjectAssessment>();
+            ProjectCommitment = new HashSet<ProjectCommitment>();
+            ProjectLessonLearned = new HashSet<ProjectLessonLearned>();
+            ProjectTermsOfUseAnswer = new HashSet<ProjectTermsOfUseAnswer>();
             ThemeScore = new HashSet<ThemeScore>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public int? PersonId { get; set; }
+        public string ProductiveUnit { get; set; }
+        public string Country { get; set; }
+        public string Region { get; set; }
+        public string Municipality { get; set; }
+        public int? ProducerId { get; set; }
+        public string ContactDetails { get; set; }
+        public string ConfidentialInformation { get; set; }
+        public string TermsOfUseComment { get; set; }
+        public string ProducerLesson { get; set; }
+        public string TeamLesson { get; set; }
 
         public virtual Person Person { get; set; }
-        public virtual ICollection<Commitment> Commitment { get; set; }
+        public virtual Person Producer { get; set; }
+        public virtual ICollection<CommitmentContract> CommitmentContract { get; set; }
+        public virtual ICollection<PrioriPosterioriQuestion> PrioriPosterioriQuestion { get; set; }
+        public virtual ICollection<PrioriPosterioriValue> PrioriPosterioriValue { get; set; }
+        public virtual ICollection<ProjectAssessment> ProjectAssessment { get; set; }
+        public virtual ICollection<ProjectCommitment> ProjectCommitment { get; set; }
+        public virtual ICollection<ProjectLessonLearned> ProjectLessonLearned { get; set; }
+        public virtual ICollection<ProjectTermsOfUseAnswer> ProjectTermsOfUseAnswer { get; set; }
         public virtual ICollection<ThemeScore> ThemeScore { get; set; }
     }
 }
