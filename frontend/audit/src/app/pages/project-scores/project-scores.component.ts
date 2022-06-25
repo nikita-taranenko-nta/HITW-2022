@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Project} from 'src/app/models/project';
 import {ProjectService} from "../../shared/services/project.service";
 import {Thema} from "../../models/thema";
@@ -48,7 +48,8 @@ export class ProjectScoresComponent implements OnInit {
   constructor(
     private readonly projectService: ProjectService,
     private readonly route: ActivatedRoute,
-    private readonly themaService: ThemaService
+    private readonly themaService: ThemaService,
+    private router: Router
   ) {
   }
 
@@ -83,4 +84,8 @@ export class ProjectScoresComponent implements OnInit {
   save(themeId: string){
     this.themaService.putThemaResponse(themeId, this.themeResponses[themeId]);
    }
+
+   back() {
+    this.router.navigate(['project', this.projectId]);
+  }
 }

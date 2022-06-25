@@ -47,7 +47,8 @@
             </div>
         </form>
         <div class="buttons">
-            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-button type="button" [routerLink]="['']">Back</button>
+            <button mat-raised-button matStepperNext color="primary" type="button">Next</button>
         </div>
     </mat-step>
     <mat-step label="Terms of use">
@@ -80,7 +81,7 @@
         </form>
         <div class="buttons">
             <button mat-button matStepperPrevious type="button">Back</button>
-            <button mat-button matStepperNext type="button">Next</button>
+            <button mat-raised-button matStepperNext color="primary" type="button">Next</button>
         </div>
     </mat-step>
     <mat-step label="A priori">
