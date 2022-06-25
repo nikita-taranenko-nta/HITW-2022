@@ -155,11 +155,7 @@ CREATE TABLE Submission (Id INT IDENTITY PRIMARY KEY, Comment VARCHAR(500), Pict
 			
 			
 CREATE TABLE PrioriPosterioriQuestion (Id INT IDENTITY PRIMARY KEY,
- Question VARCHAR(500),
-  ProjectId INT,
-		CONSTRAINT FK_Project_PrioriPosterioriQuestions
-		FOREIGN KEY (ProjectId)
-			REFERENCES Project(Id));
+ Question VARCHAR(500));
 
 CREATE TABLE PrioriPosterioriValue (Id INT IDENTITY PRIMARY KEY,
  Priori VARCHAR(500),
