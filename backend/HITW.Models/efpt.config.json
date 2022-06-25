@@ -1,12 +1,12 @@
 ﻿{
-   "CodeGenerationMode": 2,
-   "ContextClassName": "DbContext",
+   "CodeGenerationMode": 0,
+   "ContextClassName": "HitwContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
    "IncludeConnectionString": false,
    "ModelNamespace": null,
-   "OutputContextPath": null,
+   "OutputContextPath": "..\/HITW.Models",
    "OutputPath": "Entities",
    "ProjectRootNamespace": "HITW.Models",
    "Schemas": null,
@@ -46,7 +46,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "30c8a10a5c6d.hitw",
+   "UiHint": "d208998f4c59.hitw",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,

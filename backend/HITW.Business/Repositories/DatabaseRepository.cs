@@ -1,10 +1,12 @@
-﻿namespace HITW.Business.Repositories;
+﻿using HITW.Models.Entities;
+
+namespace HITW.Business.Repositories;
 
 public class DatabaseRepository : IDatabaseRepository
 {
     public Project GetProject(int id)
     {
-        return new Project(1, "Project1");
+        return new Project();
     }
 }
 

@@ -1,4 +1,5 @@
 using HITW.Business.Repositories;
+using HITW.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +25,7 @@ app.MapPost("/project", (Project p) => InMemoryProjects.Add(p));
 
 app.MapPut("/project/{id}", (int id, Project newProj) =>
 {
-    var oldProj = InMemoryProjects.Find(x => x.Id == id);
+    var oldProj = InMemoryProjects.Find(x => x.ProjectId == id);
     if (oldProj == null)
         return Results.NotFound();
     InMemoryProjects.Remove(oldProj);
@@ -42,7 +43,7 @@ app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) 
     return Results.Ok();
 });
 app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
-app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
+app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.ThemeId == id));
 
 app.Run();
 
