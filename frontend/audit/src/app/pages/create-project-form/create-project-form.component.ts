@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProjectService } from 'src/app/shared/services/project.service';
+import { Project } from 'src/app/models/project';
+import { ProjectInfo } from 'src/app/models/project-info';
 
 @Component({
   selector: 'app-create-project-form',
@@ -23,8 +26,8 @@ export class CreateProjectFormComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private projectService: ProjectService
   ) {
   }
 
@@ -32,7 +35,21 @@ export class CreateProjectFormComponent implements OnInit {
     this.farmerId = this.route.snapshot.paramMap.get('farmerId');
   }
   save() {
-    console.log(this.projectInfoForm);
+    let project = {
+      projectInfo: {
+        userId: this.farmerId,
+        confidentialInformation: this.projectInfoForm.get('details').value,
+        contactDetails: this.projectInfoForm.get('contact').value,
+        country: this.projectInfoForm.get('country').value,
+        producer: this.projectInfoForm.get('producer').value,
+        region: this.projectInfoForm.get('region').value,
+        municipality: this.projectInfoForm.get('district').value,
+        productiveUnit: this.projectInfoForm.get('name').value
+      } as ProjectInfo
+    } as Project;
+
+    this.projectService.postProject(project);
+    
     this.router.navigate(['']);
   }
   cancel(){
