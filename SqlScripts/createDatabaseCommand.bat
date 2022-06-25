@@ -1,2 +1,3 @@
-docker exec -i local-db mysql -u root -pnexiosit < CreateDatabase.sql
-docker exec -i local-db mysql -u root -pnexiosit < AddData.sql
+docker exec -i mssqlcontainer /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P NexiosIT1234 < CreateDatabase.sql
+docker exec -i mssqlcontainer /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P NexiosIT1234 < AddData.sql
+pause
