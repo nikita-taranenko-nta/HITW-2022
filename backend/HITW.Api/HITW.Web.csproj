@@ -7,4 +7,9 @@
     <UserSecretsId>cbc2b6d9-d14b-4c02-89ed-90c8881b8dc4</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HITW.Business\HITW.Business.csproj" />
+    <ProjectReference Include="..\HITW.Models\HITW.Models.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,1 @@
+﻿public record Project(uint Id, string Name);
