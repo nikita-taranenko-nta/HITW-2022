@@ -23,19 +23,14 @@ app.UseSwaggerUI(options =>
 });
 
 app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProject(id));
-app.MapGet("/project",      () => InMemoryProjects);
+app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProject());
 
-app.MapPost("/project", (Project p) => InMemoryProjects.Add(p));
+app.MapPost("/project", (Project p , IDatabaseRepository databaseRepository) => databaseRepository.SetProject(p));
 
-app.MapPut("/project/{id}", (int id, Project newProj) =>
-{
-    var oldProj = InMemoryProjects.Find(x => x.Id == id);
-    if (oldProj == null)
-        return Results.NotFound();
-    InMemoryProjects.Remove(oldProj);
-    InMemoryProjects.Add(newProj);
-    return Results.Ok();
-});
+//app.MapPut("/project/{id}", (int id, Project p, DatabaseRepository databaseRepository) =>
+//{
+//    databaseRepository.UpdateProject(p)
+//});
 
 
 app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) =>
