@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/project';
 import { ProjectInfo } from 'src/app/models/project-info';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  selector: 'app-project-scores',
+  templateUrl: './project-scores.component.html',
+  styleUrls: ['./project-scores.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectScoresComponent implements OnInit {
   public projectId: string;
   public project: Project;
-
-  constructor(private route: ActivatedRoute) {
-  }
+  
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.projectId = this.route.snapshot.paramMap.get('projectid');

@@ -13,13 +13,15 @@ import {MatCardModule} from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { ProjectComponent } from './pages/project/project.component';
+import { ProjectScoresComponent } from './pages/project-scores/project-scores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     CreateProjectFormComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectScoresComponent
   ],
   imports: [
     BrowserModule,
