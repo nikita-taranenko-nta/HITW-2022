@@ -1,0 +1,14 @@
+<h2 *ngIf="project" (click)="back()">{{project.projectInfo.productiveUnit}} - Post Priori</h2>
+
+<form [formGroup]="postPrioriForm" class="form">
+    <div *ngFor="let control of postPrioriFormDescription" class="formControlContainer">
+            <mat-form-field appearance="outline" class="fill-width">
+                <mat-label>{{control.label}}</mat-label>
+                <textarea matInput [formControlName]="control.key" cdkTextareaAutosize></textarea>
+            </mat-form-field>
+    </div>
+</form>
+<div class="buttons">
+    <button mat-button type="button" (click)="back()">Back</button>
+    <button mat-raised-button type="button" color="primary" (click)="save()">Save</button>
+</div>

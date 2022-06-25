@@ -1,0 +1,18 @@
+h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.fill-width {
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+}

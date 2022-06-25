@@ -19,6 +19,7 @@ import {ProjectScoresComponent} from './pages/project-scores/project-scores.comp
 import {ScoreQuestionComponent} from './components/score-question/score-question.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
+import { ProjectPostPrioriComponent } from './pages/project-post-priori/project-post-priori.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatTableModule} from '@angular/material/table';
     CreateProjectFormComponent,
     ProjectComponent,
     ProjectScoresComponent,
-    ScoreQuestionComponent
+    ScoreQuestionComponent,
+    ProjectPostPrioriComponent
   ],
   imports: [
     BrowserModule,
