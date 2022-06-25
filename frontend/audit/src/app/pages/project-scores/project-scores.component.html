@@ -3,8 +3,8 @@
 <mat-horizontal-stepper *ngIf="themas" linear="false" #stepper>
     <mat-step  *ngFor="let thema of themas">
         <ng-template matStepLabel>{{thema.name}}</ng-template>
-        <form action=""  class="form">
-            <score-question *ngFor="let question of thema.questions" [question]="question">
+        <form action="" [formGroup]="scoresForm"  class="form" >
+            <score-question *ngFor="let question of thema.questions" [question]="question" [form]="scoresForm">
             </score-question>
             <table mat-table [dataSource]="thema.scoreOverview">
                 <ng-container matColumnDef="level">
@@ -82,7 +82,7 @@
 
        <div class="buttons">
         <button mat-button matStepperPrevious type="button">Back</button>
-            <button mat-raised-button color="primary"> 
+            <button mat-raised-button color="primary" (click)="save()"> 
                 Save
             </button>
         </div>

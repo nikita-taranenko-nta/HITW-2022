@@ -1,4 +1,6 @@
-<mat-label>{{question.name}}</mat-label>
-<mat-form-field class="full-width" appearance="fill">
-        <textarea cdkTextareaAutosize matInput></textarea>
-</mat-form-field>
+<div [formGroup] = "form">
+        <mat-form-field class="full-width" appearance="fill">
+                <mat-label>{{question.name}}</mat-label>
+                <textarea [formControlName]="question.id" cdkTextareaAutosize matInput></textarea>
+        </mat-form-field>
+</div>
