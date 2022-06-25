@@ -3,8 +3,8 @@
 <mat-horizontal-stepper *ngIf="themas" linear="false" #stepper>
     <mat-step  *ngFor="let thema of themas">
         <ng-template matStepLabel>{{thema.name}}</ng-template>
-        <form action=""  class="form">
-            <score-question *ngFor="let question of thema.questions" [question]="question">
+        <form action="" [formGroup]="scoresForm"  class="form" >
+            <score-question *ngFor="let question of thema.questions" [question]="question" [form]="scoresForm">
             </score-question>
             <table mat-table [dataSource]="thema.scoreOverview">
                 <ng-container matColumnDef="level">
@@ -34,9 +34,55 @@
     </mat-step>
     <mat-step label="Capacities and needs">
         <!-- <form action="" [formGroup]="capacitiesAndNeedsForm" class="form"></form> -->
-        <div class="buttons">
+       <mat-label>Do you know any organisation(s)  or individual(s) working on environmental issues, in particular in your activity area and/or sector? If so, which ones? Have you received support from them in the past? Of what type (information, training, technical support, financial support, etc.)? 
+        What theme(s) did they cover? Was this support occasional or continued? Were the people working with you (staff, members of the association, etc.) involved? In what way(s) did it help?</mat-label>
+       <table class="table full-width">
+        <thead>
+            <th>Actors</th>
+            <th>Type of support and frequency</th>
+            <th>Themes</th>
+            <th>People Involved</th>
+            <th>Way(s) it helped</th>
+        </thead>
+        <tbody>
+            <td>
+                <mat-form-field appearance="outline">
+                    <input matInput>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <input matInput>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <input matInput>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <input matInput>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field appearance="outline">
+                    <input matInput>
+                </mat-form-field>
+            </td>
+        </tbody>
+       </table> 
+
+       <div class="form-group">
+        <label>Do you think (in your private capacity or in your organisation’s) you hold the knowledge and technical, organisational and/or financial capacities to implement the actions identified in theme 3? <br> What kind of support would you need?</label>
+        <mat-form-field appearance="outline" class="full-width">
+        <textarea cdkTextareaAutosize matInput></textarea>
+        </mat-form-field>
+    </div>
+
+       <div class="buttons">
         <button mat-button matStepperPrevious type="button">Back</button>
-            <button mat-raised-button color="primary"> 
+            <button mat-raised-button color="primary" (click)="save()"> 
                 Save
             </button>
         </div>
