@@ -48,7 +48,7 @@ export class ProjectScoresComponent implements OnInit {
   constructor(
     private readonly projectService: ProjectService,
     private readonly route: ActivatedRoute,
-    private readonly themeService: themeService
+    private readonly themeService: themeService,
     private router: Router
   ) {
   }
