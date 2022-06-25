@@ -3,10 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {LandingPageComponent} from "./pages/landing-page/landing-page.component";
 import {CreateProjectFormComponent} from "./pages/create-project-form/create-project-form.component";
 import { ProjectComponent } from './pages/project/project.component';
+import { ProjectScoresComponent } from './pages/project-scores/project-scores.component';
 
 const routes: Routes = [
-  {path: 'create/:farmerId', component: CreateProjectFormComponent},
-  {path: 'project/:projectId', component: ProjectComponent},
+  {path: 'create/:farmerid', component: CreateProjectFormComponent},
+  {path: 'project/:projectid', component: ProjectComponent},
+  {path: 'project/:projectid/project-score', component: ProjectScoresComponent},
   {path: '**', component: LandingPageComponent},
 ];
 

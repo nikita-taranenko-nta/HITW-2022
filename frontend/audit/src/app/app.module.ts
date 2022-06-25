@@ -14,13 +14,16 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {ProjectComponent} from './pages/project/project.component';
 import {HttpClientModule} from "@angular/common/http";
+import {MatStepperModule} from '@angular/material/stepper';
+import {ProjectScoresComponent} from './pages/project-scores/project-scores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     CreateProjectFormComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectScoresComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import {HttpClientModule} from "@angular/common/http";
     MatToolbarModule,
     MatCardModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
