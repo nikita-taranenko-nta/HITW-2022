@@ -16,6 +16,7 @@ import {ProjectComponent} from './pages/project/project.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MatStepperModule} from '@angular/material/stepper';
 import {ProjectScoresComponent} from './pages/project-scores/project-scores.component';
+import {ScoreQuestionComponent} from './components/score-question/score-question.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ProjectScoresComponent} from './pages/project-scores/project-scores.comp
     LandingPageComponent,
     CreateProjectFormComponent,
     ProjectComponent,
-    ProjectScoresComponent
+    ProjectScoresComponent,
+    ScoreQuestionComponent
   ],
   imports: [
     BrowserModule,
