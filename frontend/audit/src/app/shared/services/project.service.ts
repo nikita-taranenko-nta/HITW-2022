@@ -19,7 +19,8 @@ export class ProjectService {
   }
 
   public getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(environment.apiUrl + '/projects');
+    let i = this.http.get<Project[]>(environment.apiUrl + '/projects');
+    return i;
   }
 
   public getProject(projectId: string): Observable<Project> {
