@@ -18,12 +18,12 @@ export class ProjectService {
     return this.http.post<string>(environment.apiUrl + '/projects', project);
   }
 
-  public getProjects(): Observable<string> {
-    return this.http.get<string>(environment.apiUrl + '/projects');
+  public getProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(environment.apiUrl + '/projects');
   }
 
-  public getProject(projectId: string): Observable<string> {
-    return this.http.get<string>(environment.apiUrl + `/projects/${projectId}`);
+  public getProject(projectId: string): Observable<Project> {
+    return this.http.get<Project>(environment.apiUrl + `/projects/${projectId}`);
   }
 
   public putProject(project: Project): Observable<string> {
