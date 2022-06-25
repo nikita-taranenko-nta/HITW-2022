@@ -166,7 +166,7 @@ CREATE TABLE PrioriPosterioriValue (Id INT IDENTITY PRIMARY KEY,
  Posteriori VARCHAR(500),
   ProjectId INT,
   PrioriPosterioriQuestionId INT,
-		CONSTRAINT FK_Project_ProjectAssessment
+		CONSTRAINT FK_Project_PrioriPosterioriValue
 		FOREIGN KEY (ProjectId)
 			REFERENCES Project(Id),
 		CONSTRAINT FK_PrioriPosterioriQuestion_PrioriPosterioriValue
