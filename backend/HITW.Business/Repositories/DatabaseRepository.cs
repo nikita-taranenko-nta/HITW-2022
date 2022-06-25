@@ -17,11 +17,17 @@ public class DatabaseRepository : IDatabaseRepository
         return _hitwContext.Project.SingleOrDefault(x => x.Id == id);
     }
 
+    public void AddProject(Project project)
+    {
+        _hitwContext.Project.Add(project);
+        _hitwContext.SaveChanges();
+    }
+
     public void UpdateProject(Project project)
     {
         try
         {
-            _hitwContext.Project.Add(project);
+            _hitwContext.Project.Update(project);
             _hitwContext.SaveChanges();
         }
         catch (Exception e)
@@ -30,6 +36,55 @@ public class DatabaseRepository : IDatabaseRepository
 
             throw;
         }
+    }
+
+    public void RemoveProject(int id)
+    {
+        var project = _hitwContext.Project.SingleOrDefault(x => x.Id == id);
+
+        if (project == null)
+        {
+            return;
+        }
+
+        _hitwContext.Project.Remove(project);
+        _hitwContext.SaveChanges();
+    }
+
+    public void UpdateTheme(Theme theme)
+    {
+        _hitwContext.Theme.Add(theme);
+        _hitwContext.SaveChanges();
+    }
+
+    public void UpdateThemeIdentifiedActions(int themeScoreId, string? producerActions, string? teamActions)
+    {
+        var identifiedAction = _hitwContext.IdentifiedAction.Single(x => x.ThemeScoreId == themeScoreId);
+
+        if (producerActions != null)
+        {
+            identifiedAction.Data  = producerActions;
+            identifiedAction.Actor = "Producer";
+        }
+
+        if (teamActions != null)
+        {
+            identifiedAction.Data  = teamActions;
+            identifiedAction.Actor = "Team";
+        }
+
+        _hitwContext.IdentifiedAction.Update(identifiedAction);
+        _hitwContext.SaveChanges();
+    }
+
+    public void UpdateLessonsLearned(int projectId, bool isProducer, string answer)
+    {
+        var projectLessonLearned = _hitwContext.ProjectLessonLearned.Single(x => x.ProjectId == projectId);
+        projectLessonLearned.Data = answer;
+        projectLessonLearned.IsProducer = isProducer;
+
+        _hitwContext.ProjectLessonLearned.Update(projectLessonLearned);
+        _hitwContext.SaveChanges();
     }
 
     public List<Project> GetProjects(int personId)
@@ -46,8 +101,6 @@ public interface IDatabaseRepository
     void          UpdateProject(Project project);
     void          RemoveProject(int id);
     void          UpdateTheme(Theme theme);
-    void          UpdateThemeSummaryActions(int themeId, string producerActions, string teamActions);
+    void          UpdateThemeIdentifiedActions(int themeScoreId, string? producerActions, string? teamActions);
     void          UpdateLessonsLearned(int projectId, bool isProducer, string answer);
-    void          AddPriori(List<>);
-    void          AddPostAssessment(int projectId, bool isProducer, string answer);
 }

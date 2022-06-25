@@ -22,11 +22,11 @@ app.UseSwaggerUI(options =>
 
 
 app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProjects(id));
-app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
+//app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
 
-app.MapPost("/project", (Project p , IDatabaseRepository databaseRepository) => databaseRepository.UpdateProject(p));
+app.MapPost("/project", (Project project , IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
 
-app.MapPut("/project/{id}", (int id, Project p, IDatabaseRepository databaseRepository) => databaseRepository.Update(p));
+//app.MapPut("/project/{id}", (int id, Project p, IDatabaseRepository databaseRepository) => databaseRepository.Update(p));
 
 
 app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) =>
@@ -34,11 +34,11 @@ app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) 
     var item = databaseRepository.GetProjects(id);
     if (item == null)
         return Results.NotFound();
-    databaseRepository.Remove(item);
+    //databaseRepository.Remove(item);
     return Results.Ok();
 });
 app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
-app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
+//app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
 
 app.Run();
 
