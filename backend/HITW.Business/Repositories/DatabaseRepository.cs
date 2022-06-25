@@ -13,12 +13,12 @@ public class DatabaseRepository : IDatabaseRepository
         _hitwContext = hitwContext;
     }
 
-    public Project? GetProject(int id)
+    public Project GetProject(int id)
     {
         return _hitwContext.Projects
                            .Include(x => x.ThemeScores).ThenInclude(x => x.Answers).ThenInclude(x => x.Question)
                            .Include(x => x.ThemeScores).ThenInclude(x => x.Theme)
-                           .SingleOrDefault(x => x.Id == id);
+                           .Single(x => x.Id == id);
     }
 
     public List<Project> GetProjects(int personId)
@@ -129,7 +129,7 @@ public class DatabaseRepository : IDatabaseRepository
 
 public interface IDatabaseRepository
 {
-    Project?      GetProject(int id);
+    Project      GetProject(int id);
     List<Project> GetProjects();
     void          AddProject(Project project);
     void          UpdateProject(Project project);
