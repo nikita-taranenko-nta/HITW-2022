@@ -17,4 +17,9 @@ public partial class HitwContext : DbContext
         // connect to sql server with connection string from app settings
         options.UseSqlServer(Configuration.GetConnectionString("HitwDatabase"));
     }
+
+    //protected override void OnModelCreating(ModelBuilder modelBuilder)
+    //{
+
+    //}
 }

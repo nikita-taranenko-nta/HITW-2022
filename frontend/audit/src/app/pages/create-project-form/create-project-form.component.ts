@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ProjectService } from 'src/app/shared/services/project.service';
 import { Project } from 'src/app/models/project';
-import { ProjectInfo } from 'src/app/models/project-info';
 import { APrioriQuestion } from 'src/app/enums/a-priori-question';
 import { TermsOfUse } from 'src/app/models/terms-of-use';
 import { TermsOfUseAnswerQuestion } from 'src/app/enums/terms-of-use-answer-question.enum';
@@ -140,22 +139,19 @@ getTermOfUseAnswers(){
   save() {
     this.getPreAssesmentAnswers();
     let project = {
-      projectInfo: {
-        userId: this.farmerId,
-        confidentialInformation: this.projectInfoForm.get('details').value,
-        contactDetails: this.projectInfoForm.get('contact').value,
-        country: this.projectInfoForm.get('country').value,
-        producer: this.projectInfoForm.get('producer').value,
-        region: this.projectInfoForm.get('region').value,
-        municipality: this.projectInfoForm.get('district').value,
-        productiveUnit: this.projectInfoForm.get('name').value
-      } as ProjectInfo,
+      personId: this.farmerId,
+      confidentialInformation: this.projectInfoForm.get('details').value,
+      contactDetails: this.projectInfoForm.get('contact').value,
+      country: this.projectInfoForm.get('country').value,
+      producer: this.projectInfoForm.get('producer').value,
+      region: this.projectInfoForm.get('region').value,
+      municipality: this.projectInfoForm.get('district').value,
+      productiveUnit: this.projectInfoForm.get('name').value,
       termsOfUse: {
         comment: this.termsOfUseForm.get('' + TermsOfUseAnswerQuestion.Comment).value,
         termsOfUseAnswers: this.getTermOfUseAnswers()
       } as TermsOfUse,
       preAssessment: this.getPreAssesmentAnswers()
-
     } as Project;
     this.projectService.postProject(project);
 

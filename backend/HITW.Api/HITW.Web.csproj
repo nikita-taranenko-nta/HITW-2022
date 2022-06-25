@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HITW.Business\HITW.Business.csproj" />
     <ProjectReference Include="..\HITW.Models\HITW.Models.csproj" />
+    <ProjectReference Include="..\HITW.Web.Models\HITW.Web.Models.csproj" />
   </ItemGroup>
 
 </Project>
