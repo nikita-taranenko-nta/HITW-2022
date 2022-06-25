@@ -48,11 +48,11 @@ List<CapacityAndNeed>
 totalscore int, 
 string free text field
 
-PUT /theme/{id}/summaryactions =>
-List<SummaryAction> => SummaryAction {themeId, string producerActions, string teamActions}
+PUT /theme/{id}/summaryaction =>
+List<SummaryAction> => SummaryAction {themeId, string producerAction, string teamAction}
 
-PUT /projects/{id}/summaryactions =>
-SummaryAction {string producerActions, string teamActions}
+PUT /projects/{id}/summaryaction =>
+SummaryAction {string producerActions, string teamAction}
 
 PUT /projects/{id}/diagnosis/lessonslearned =>
 LessonLearned{boolean isProducer, string answer}

@@ -7,12 +7,54 @@ GO
 USE hitw;
 
 -- Create the tables here
-CREATE TABLE Person (Id INT IDENTITY PRIMARY KEY, LastName VARCHAR(50), FirstName VARCHAR(50));
+CREATE TABLE Person (Id INT IDENTITY PRIMARY KEY,
+ LastName VARCHAR(50),
+ FirstName VARCHAR(50));
 
-CREATE TABLE Project (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50), PersonId INT,
+CREATE TABLE Project (Id INT IDENTITY PRIMARY KEY,
+ Name VARCHAR(50),
+ PersonId INT,
+ ProductiveUnit VARCHAR(50),
+ Country VARCHAR(50),
+ Region VARCHAR(50),
+ Municipality VARCHAR(50),
+ ProducerId INT,
+ ContactDetails VARCHAR(MAX),
+ ConfidentialInformation VARCHAR(MAX),
+ TermsOfUseComment VARCHAR(MAX),
+ ProducerLesson VARCHAR(MAX),
+ TeamLesson VARCHAR(MAX),
 		CONSTRAINT FK_Person_Project
 		FOREIGN KEY (PersonId)
+			REFERENCES Person(Id),
+		CONSTRAINT FK_Producer
+		FOREIGN KEY (ProducerId)
 			REFERENCES Person(Id));
+			
+CREATE TABLE TermsOfUseQuestion(Id INT IDENTITY PRIMARY KEY,
+	Data VARCHAR(100))
+	
+CREATE TABLE TermsOfUseAnswer(Id INT IDENTITY PRIMARY KEY,
+	Data VARCHAR(100),
+	TermsOfUseQuestionId INT,
+		CONSTRAINT FK_TermsOfUseAnswerQuestion
+		FOREIGN KEY (TermsOfUseQuestionId)
+			REFERENCES TermsOfUseQuestion(Id))
+			
+CREATE TABLE ProjectTermsOfUseAnswer(Id INT IDENTITY PRIMARY KEY,
+	Data VARCHAR(100),
+	TermsOfUseQuestionId INT,
+	TermsOfUseAnswerId INT,
+	ProjectId INT,
+		CONSTRAINT FK_Project
+		FOREIGN KEY (ProjectId)
+			REFERENCES Project(Id),
+		CONSTRAINT FK_ProjectTermsOfUseQuestion
+		FOREIGN KEY (TermsOfUseQuestionId)
+			REFERENCES TermsOfUseQuestion(Id),			
+		CONSTRAINT FK_TermsOfUseAnswer
+		FOREIGN KEY (TermsOfUseAnswerId)
+			REFERENCES TermsOfUseAnswer(Id))
 
 CREATE TABLE Theme (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50));
 
@@ -21,19 +63,45 @@ CREATE TABLE Question (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50), Data VARCH
 		FOREIGN KEY (ThemeId)
 			REFERENCES Theme(Id));
 
-CREATE TABLE ThemeScore (Id INT IDENTITY PRIMARY KEY, ThemeId INT, ProjectId INT, Score INT,
+CREATE TABLE ThemeScore (Id INT IDENTITY PRIMARY KEY,
+ 	ThemeId INT,
+	ProjectId INT,
+  	Score INT,
+  	Comment VARCHAR(MAX),
 		CONSTRAINT FK_Project_ThemeScore
 		FOREIGN KEY (ProjectId)
 			REFERENCES Project(Id),
 		CONSTRAINT FK_Theme_ThemeScore
 		FOREIGN KEY (ThemeId)
 			REFERENCES Theme(Id));
+						
+CREATE TABLE Action (Id INT IDENTITY PRIMARY KEY,
+	Data VARCHAR(500),
+	Actor VARCHAR(50),
+	ThemeScoreId INT,
+		CONSTRAINT FK_ThemeScoreAction
+		FOREIGN KEY (ThemeScoreId)
+			REFERENCES ThemeScore(Id));
 
-CREATE TABLE Answer (Id INT IDENTITY PRIMARY KEY, Data VARCHAR(500), ThemeScoreId INT, QuestionId INT,
-		CONSTRAINT FK_Question_Answer
+CREATE TABLE Answer (Id INT IDENTITY PRIMARY KEY,
+ Data VARCHAR(500),
+ ThemeScoreId INT,
+ QuestionId INT,
+		CONSTRAINT FK_Question
 		FOREIGN KEY (QuestionId)
 			REFERENCES Question(Id),
-		CONSTRAINT FK_ThemeScore_Answer
+		CONSTRAINT FK_ThemeScoreAnswer
+		FOREIGN KEY (ThemeScoreId)
+			REFERENCES ThemeScore(Id));
+
+CREATE TABLE CapAndNeed (Id INT IDENTITY PRIMARY KEY,
+ Actor VARCHAR(50),
+ SupportType VARCHAR(50),
+ CapTheme VARCHAR(50),
+ PeopleInvolved VARCHAR(50),
+ WaysItHelped VARCHAR(500),
+ ThemeScoreId INT,
+		CONSTRAINT FK_ThemeScoreCapAndNeed
 		FOREIGN KEY (ThemeScoreId)
 			REFERENCES ThemeScore(Id));
 
