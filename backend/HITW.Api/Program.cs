@@ -1,18 +1,24 @@
 using HITW.Business.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient();
+
 builder.Services.AddScoped<IDatabaseRepository, DatabaseRepository>();
 
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var sampleService = scope.ServiceProvider.GetRequiredService<SampleService>();
-//    sampleService.DoSomething();
-//}
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
 
-app.MapGet("/project/{id}", (int id) => InMemoryProjects.Find(x => x.Id == id));
-app.MapGet("/project", () => InMemoryProjects);
+app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProject(id));
+app.MapGet("/project",      () => InMemoryProjects);
 
 app.MapPost("/project", (Project p) => InMemoryProjects.Add(p));
 
@@ -27,9 +33,9 @@ app.MapPut("/project/{id}", (int id, Project newProj) =>
 });
 
 
-app.MapDelete("/project/{id}", (int id) =>
+app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) =>
 {
-    var item = InMemoryProjects.Find(x => x.Id == id);
+    var item = databaseRepository.GetProject(id);
     if (item == null)
         return Results.NotFound();
     InMemoryProjects.Remove(item);

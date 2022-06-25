@@ -10,5 +10,5 @@ public class DatabaseRepository : IDatabaseRepository
 
 public interface IDatabaseRepository
 {
-    Project GetProject(int id);
+    Project? GetProject(int id);
 }
