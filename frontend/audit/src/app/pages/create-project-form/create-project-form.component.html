@@ -1,0 +1,110 @@
+<h1>Add project</h1>
+<mat-horizontal-stepper linear="false" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Projectinfo</ng-template>
+        <form action="" [formGroup]="projectInfoForm" class="form">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="name" formControlName="name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Country</mat-label>
+                    <input matInput placeholder="country" formControlName="country">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Region</mat-label>
+                    <input matInput placeholder="region" formControlName="region">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>District</mat-label>
+                    <input matInput placeholder="district" formControlName="district">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Producer</mat-label>
+                    <input matInput placeholder="producer" formControlName="producer">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contact</mat-label>
+                    <input matInput placeholder="contact" formControlName="contact">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Details</mat-label>
+                    <textarea matInput formControlName="details" cdkTextareaAutosize></textarea>
+                </mat-form-field>
+            </div>
+        </form>
+        <div class="buttons">
+            <button mat-button matStepperNext type="button">Next</button>
+        </div>
+    </mat-step>
+    <mat-step label="Terms of use">
+        <form [formGroup]="termsOfUseForm" class="form">
+            <div *ngFor="let control of termsOfUseFormDescription" class="formControlContainer">
+                <div *ngIf="control.type === 'input'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{control.label}}</mat-label>
+                        <input matInput [placeholder]="contol.label" [formControlName]="control.key">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="control.type === 'textArea'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{control.label}}</mat-label>
+                        <textarea matInput [formControlName]="control.key" cdkTextareaAutosize></textarea>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="control.type === 'radio'">
+                    <div class="radioControl">
+                        <mat-label>{{control.label}}</mat-label>
+                        <mat-radio-group [formControlName]="control.key">
+                            <mat-radio-button *ngFor="let option of control.options" [value]="option">
+                                {{option}}
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <div class="buttons">
+            <button mat-button matStepperPrevious type="button">Back</button>
+            <button mat-button matStepperNext type="button">Next</button>
+        </div>
+    </mat-step>
+    <mat-step label="A priori">
+        <form [formGroup]="aPrioriForm" class="form">
+            <div *ngFor="let control of aPrioriFormDescription" class="formControlContainer">
+                <div *ngIf="control.type === 'input'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{control.label}}</mat-label>
+                        <input matInput [placeholder]="contol.label" [formControlName]="control.key">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="control.type === 'textArea'">
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{control.label}}</mat-label>
+                        <textarea matInput [formControlName]="control.key" cdkTextareaAutosize></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+        <div class="buttons">
+            <button mat-button matStepperPrevious type="button">Back</button>
+            <button mat-raised-button color="primary" (click)="save()">
+                Save
+            </button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

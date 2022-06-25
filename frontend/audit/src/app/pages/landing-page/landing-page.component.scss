@@ -1,0 +1,28 @@
+@import "../../../styles.scss";
+
+.add-project {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.project-item {
+    margin-bottom: 20px;
+    background-color: mat-color($audit-primary, lighter);
+    h2 {
+        font-weight: bold
+    }
+
+    &:hover {
+        background-color:  mat-color($audit-primary, darker);
+        color: white;
+        cursor: pointer;
+
+        mat-card-subtitle {
+            color: lightgray;
+        }
+    }
+}
+
+
