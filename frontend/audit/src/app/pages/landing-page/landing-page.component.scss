@@ -17,6 +17,7 @@
     &:hover {
         background-color:  mat-color($audit-primary, darker);
         color: white;
+        cursor: pointer;
 
         mat-card-subtitle {
             color: lightgray;
