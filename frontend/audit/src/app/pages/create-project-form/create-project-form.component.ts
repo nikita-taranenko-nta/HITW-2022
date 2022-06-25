@@ -5,7 +5,6 @@ import { ProjectService } from 'src/app/shared/services/project.service';
 import { Project } from 'src/app/models/project';
 import { ProjectInfo } from 'src/app/models/project-info';
 import { APrioriQuestion } from 'src/app/enums/a-priori-question';
-import { Question } from 'src/app/models/question';
 import { TermsOfUse } from 'src/app/models/terms-of-use';
 import { TermsOfUseAnswerQuestion } from 'src/app/enums/terms-of-use-answer-question.enum';
 import { TermsOfUseAnswer } from 'src/app/models/terms-of-use-answer';
@@ -158,11 +157,9 @@ getTermOfUseAnswers(){
       preAssessment: this.getPreAssesmentAnswers()
 
     } as Project;
-    this.getTermOfUseAnswers()
-    console.log(project, this.termsOfUseForm.value);
     this.projectService.postProject(project);
 
-    // this.router.navigate(['']);
+    this.router.navigate(['']);
   }
   cancel() {
     this.router.navigate(['']);
