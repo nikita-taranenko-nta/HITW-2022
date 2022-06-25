@@ -123,7 +123,7 @@ public class DatabaseRepository : IDatabaseRepository
 
     public List<Theme> GetQuestionnaire()
     {
-        return _hitwContext.Theme.Include(t=> t.Question).ToList(); //.Include(t => t.Question).ToList();
+        return _hitwContext.Themes.Include(t=> t.Questions).ToList(); //.Include(t => t.Question).ToList();
     }
 }
 
