@@ -4,8 +4,8 @@ import {Project} from 'src/app/models/project';
 import {ProjectService} from "../../shared/services/project.service";
 import {Thema} from "../../models/thema";
 import {ThemaService} from "../../shared/services/thema.service";
-import { Score } from 'src/app/models/Score';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ThemaResponse } from 'src/app/models/thema-response';
+import { QuestionAnswer } from 'src/app/models/question-answer';
 
 @Component({
   selector: 'app-project-scores',
@@ -16,6 +16,7 @@ export class ProjectScoresComponent implements OnInit {
   public projectId: string;
   public project: Project;
   public themas: Thema[];
+  themeResponses = {};
   displayedColumns = ['level','justification', 'score']
   displayedColumns2 = ['actors','typeOfSupport','themes','peopleInvolved', 'waysItHelped']
    scoreDescription = { 
@@ -44,7 +45,6 @@ export class ProjectScoresComponent implements OnInit {
       {score: 3, level: "Good", justification: "Has some capacities and identifies his/her needs"},
       {score: 4, level: "High", justification: "Has all the required capacities to undertake concrete actions"}],
    };
-   scoresForm: FormGroup = new FormGroup({})
   constructor(
     private readonly projectService: ProjectService,
     private readonly route: ActivatedRoute,
@@ -63,13 +63,24 @@ export class ProjectScoresComponent implements OnInit {
         this.themas.forEach((thema) => {
           thema.scoreOverview = this.scoreDescription[thema.id];
           questions.push(...thema.questions);
+          this.themeResponses[thema.id] = {
+            totalScore:0,
+            questionAnswers:[],
+            freeTextField: ''
+          } as ThemaResponse
         });
-        questions.map(q => {
-          this.scoresForm.addControl(q.id, new FormControl(''))
-        })
       } );
   }
-  save(){
-    console.log( this.scoresForm.value);
+  valueChanges = (themeId: string , questionId: string, value:string) => {
+      this.themeResponses[themeId].questionAnswers = [...this.themeResponses[themeId].questionAnswers.filter(x=> x.id !== questionId), {id: questionId, answer: value} as QuestionAnswer];
   }
+  overAllScoreChanged=(themeId: string, event:any)=>{
+    this.themeResponses[themeId].totalScore = event.target.value;
+  }
+  saveCapacities(){
+    console.log("");
+  }
+  save(themeId: string){
+    this.themaService.putThemaResponse(themeId, this.themeResponses[themeId]);
+   }
 }
