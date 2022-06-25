@@ -38,4 +38,4 @@ VALUES ('we all love c# and strongly dislike java', 2, 1);
 INSERT INTO answer (answer_string,theme_score_id,question_id)
 VALUES ('i have no more inspiration', 2, 2);
 
-# todo add submission and commitment
+--todo add submission and commitment
