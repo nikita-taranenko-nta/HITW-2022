@@ -471,6 +471,83 @@
       "enabled": true,
       "randomResponse": false,
       "sequentialResponse": false
+    },
+    {
+      "uuid": "0510256d-cd65-468c-b5d6-05ac1d78af29",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/:projectId/commitments",
+      "responses": [
+        {
+          "uuid": "af801109-bcd3-4430-b146-b36aae3900cc",
+          "body": "{\r\n  \"commitments\": [\r\n      {\r\n        \"isProducer\": true,\r\n        \"commitments\": \"commitment 1\",\r\n        \"expectedResults\": \"expectedResults 1\",\r\n        \"expectedDeadline\": \"2023-01-01\"\r\n      },\r\n      {\r\n        \"isProducer\": true,\r\n        \"commitments\": \"commitment 2\",\r\n        \"expectedResults\": \"expectedResults 2\",\r\n        \"expectedDeadline\": \"2024-01-01\"\r\n      },\r\n      {\r\n        \"isProducer\": false,\r\n        \"commitments\": \"commitment 3\",\r\n        \"expectedResults\": \"expectedResults 3\",\r\n        \"expectedDeadline\": \"2023-01-01\"\r\n      },\r\n      {\r\n        \"isProducer\": false,\r\n        \"commitments\": \"commitment 4\",\r\n        \"expectedResults\": \"expectedResults 4\",\r\n        \"expectedDeadline\": \"2025-01-01\"\r\n      }\r\n    ],\r\n    \"comments\": \"comments\"\r\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "9ef775c3-c207-498b-80bd-7ae22339efe7",
+          "body": "{\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "d9c728a2-7126-45e7-9a19-3cd1ec278ccd",
+          "body": "    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
     }
   ],
   "proxyMode": false,
