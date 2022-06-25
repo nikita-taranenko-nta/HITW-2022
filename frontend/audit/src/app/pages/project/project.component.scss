@@ -12,6 +12,7 @@ h2 {
     &:hover {
         background-color:  mat-color($audit-primary, darker);
         color: white;
+        cursor: pointer;
     }
 }
 
