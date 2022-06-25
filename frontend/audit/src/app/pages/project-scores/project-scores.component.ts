@@ -27,6 +27,7 @@ export class ProjectScoresComponent implements OnInit {
     this.projectService.getProject(this.projectId)
       .subscribe(project => this.project = project);
     this.themaService.getQuestionnaire()
-      .subscribe(themas => this.themas = themas);
+      .subscribe(themas => { this.themas = themas
+      console.log(themas)} );
   }
 }
