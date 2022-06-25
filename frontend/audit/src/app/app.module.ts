@@ -18,6 +18,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {ProjectScoresComponent} from './pages/project-scores/project-scores.component';
 import {ScoreQuestionComponent} from './components/score-question/score-question.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatStepperModule,
     HttpClientModule,
-    MatRadioModule
+    MatRadioModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

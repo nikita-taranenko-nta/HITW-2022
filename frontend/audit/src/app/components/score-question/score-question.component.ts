@@ -8,7 +8,7 @@ import { Question } from 'src/app/models/question';
 })
 export class ScoreQuestionComponent implements OnInit {
   @Input() public question: Question
-  constructor() { console.log(this.question) }
+  constructor() {}
 
   ngOnInit(): void {
   }
