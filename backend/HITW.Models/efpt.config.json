@@ -14,35 +14,35 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "Name": "[dbo].[answer]",
+         "Name": "[dbo].[Answer]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[commitment]",
+         "Name": "[dbo].[Commitment]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[person]",
+         "Name": "[dbo].[Person]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[project]",
+         "Name": "[dbo].[Project]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[question]",
+         "Name": "[dbo].[Question]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[submission]",
+         "Name": "[dbo].[Submission]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[theme]",
+         "Name": "[dbo].[Theme]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[theme_score]",
+         "Name": "[dbo].[ThemeScore]",
          "ObjectType": 0
       }
    ],

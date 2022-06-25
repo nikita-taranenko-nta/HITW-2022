@@ -12,9 +12,9 @@ namespace HITW.Models.Entities
             Project = new HashSet<Project>();
         }
 
-        public int PersonId { get; set; }
-        public string Name { get; set; }
-        public string Lastname { get; set; }
+        public int Id { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
 
         public virtual ICollection<Project> Project { get; set; }
     }

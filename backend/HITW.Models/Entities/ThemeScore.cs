@@ -12,7 +12,7 @@ namespace HITW.Models.Entities
             Answer = new HashSet<Answer>();
         }
 
-        public int ThemeScoreId { get; set; }
+        public int Id { get; set; }
         public int? ThemeId { get; set; }
         public int? ProjectId { get; set; }
         public int? Score { get; set; }

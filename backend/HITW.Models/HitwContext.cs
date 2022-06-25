@@ -35,167 +35,104 @@ namespace HITW.Models
 
             modelBuilder.Entity<Answer>(entity =>
             {
-                entity.ToTable("answer");
-
-                entity.Property(e => e.AnswerId).HasColumnName("answer_id");
-
-                entity.Property(e => e.AnswerString)
+                entity.Property(e => e.Data)
                     .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("answer_string");
-
-                entity.Property(e => e.QuestionId).HasColumnName("question_id");
-
-                entity.Property(e => e.ThemeScoreId).HasColumnName("theme_score_id");
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Question)
                     .WithMany(p => p.Answer)
                     .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("fk_question");
+                    .HasConstraintName("FK_Question");
 
                 entity.HasOne(d => d.ThemeScore)
                     .WithMany(p => p.Answer)
                     .HasForeignKey(d => d.ThemeScoreId)
-                    .HasConstraintName("fk_theme_score");
+                    .HasConstraintName("FK_ThemeScore");
             });
 
             modelBuilder.Entity<Commitment>(entity =>
             {
-                entity.ToTable("commitment");
-
-                entity.Property(e => e.CommitmentId).HasColumnName("commitment_id");
-
                 entity.Property(e => e.Description)
                     .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("description");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.ProjectId).HasColumnName("project_id");
-
-                entity.Property(e => e.TargetDate)
-                    .HasColumnType("date")
-                    .HasColumnName("target_date");
+                entity.Property(e => e.TargetDate).HasColumnType("date");
 
                 entity.HasOne(d => d.Project)
                     .WithMany(p => p.Commitment)
                     .HasForeignKey(d => d.ProjectId)
-                    .HasConstraintName("fk_project_commitment");
+                    .HasConstraintName("FK_Project_Commitment");
             });
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.ToTable("person");
-
-                entity.Property(e => e.PersonId).HasColumnName("person_id");
-
-                entity.Property(e => e.Lastname)
+                entity.Property(e => e.FirstName)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("lastname");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.LastName)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("name");
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Project>(entity =>
             {
-                entity.ToTable("project");
-
-                entity.Property(e => e.ProjectId).HasColumnName("project_id");
-
-                entity.Property(e => e.PersonId).HasColumnName("person_id");
-
-                entity.Property(e => e.ProjectName)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("project_name");
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.Project)
                     .HasForeignKey(d => d.PersonId)
-                    .HasConstraintName("fk_person");
+                    .HasConstraintName("FK_Person");
             });
 
             modelBuilder.Entity<Question>(entity =>
             {
-                entity.ToTable("question");
-
-                entity.Property(e => e.QuestionId).HasColumnName("question_id");
-
-                entity.Property(e => e.QuestionName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("question_name");
-
-                entity.Property(e => e.QuestionString)
+                entity.Property(e => e.Data)
                     .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("question_string");
+                    .IsUnicode(false);
 
-                entity.Property(e => e.ThemeId).HasColumnName("theme_id");
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Theme)
                     .WithMany(p => p.Question)
                     .HasForeignKey(d => d.ThemeId)
-                    .HasConstraintName("fk_theme");
+                    .HasConstraintName("FK_Theme");
             });
 
             modelBuilder.Entity<Submission>(entity =>
             {
-                entity.ToTable("submission");
-
-                entity.Property(e => e.SubmissionId).HasColumnName("submission_id");
-
                 entity.Property(e => e.Comment)
                     .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("comment");
-
-                entity.Property(e => e.CommitmentId).HasColumnName("commitment_id");
-
-                entity.Property(e => e.Picture).HasColumnName("picture");
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Commitment)
                     .WithMany(p => p.Submission)
                     .HasForeignKey(d => d.CommitmentId)
-                    .HasConstraintName("fk_commitment");
+                    .HasConstraintName("FK_Commitment");
             });
 
             modelBuilder.Entity<Theme>(entity =>
             {
-                entity.ToTable("theme");
-
-                entity.Property(e => e.ThemeId).HasColumnName("theme_id");
-
-                entity.Property(e => e.ThemeName)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("theme_name");
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<ThemeScore>(entity =>
             {
-                entity.ToTable("theme_score");
-
-                entity.Property(e => e.ThemeScoreId).HasColumnName("theme_score_id");
-
-                entity.Property(e => e.ProjectId).HasColumnName("project_id");
-
-                entity.Property(e => e.Score).HasColumnName("score");
-
-                entity.Property(e => e.ThemeId).HasColumnName("theme_id");
-
                 entity.HasOne(d => d.Project)
                     .WithMany(p => p.ThemeScore)
                     .HasForeignKey(d => d.ProjectId)
-                    .HasConstraintName("fk_project_theme_score");
+                    .HasConstraintName("FK_Project_ThemeScore");
 
                 entity.HasOne(d => d.Theme)
                     .WithMany(p => p.ThemeScore)
                     .HasForeignKey(d => d.ThemeId)
-                    .HasConstraintName("fk_theme_theme_score");
+                    .HasConstraintName("FK_Theme_ThemeScore");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -13,8 +13,8 @@ namespace HITW.Models.Entities
             ThemeScore = new HashSet<ThemeScore>();
         }
 
-        public int ThemeId { get; set; }
-        public string ThemeName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public virtual ICollection<Question> Question { get; set; }
         public virtual ICollection<ThemeScore> ThemeScore { get; set; }

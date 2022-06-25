@@ -7,8 +7,8 @@ namespace HITW.Models.Entities
 {
     public partial class Answer
     {
-        public int AnswerId { get; set; }
-        public string AnswerString { get; set; }
+        public int Id { get; set; }
+        public string Data { get; set; }
         public int? ThemeScoreId { get; set; }
         public int? QuestionId { get; set; }
 

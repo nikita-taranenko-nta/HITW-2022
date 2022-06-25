@@ -12,9 +12,9 @@ namespace HITW.Models.Entities
             Answer = new HashSet<Answer>();
         }
 
-        public int QuestionId { get; set; }
-        public string QuestionName { get; set; }
-        public string QuestionString { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Data { get; set; }
         public int? ThemeId { get; set; }
 
         public virtual Theme Theme { get; set; }

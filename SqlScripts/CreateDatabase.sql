@@ -7,42 +7,42 @@ GO
 USE hitw;
 
 -- Create the tables here
-CREATE TABLE person (person_id INT IDENTITY PRIMARY KEY, name VARCHAR(50), lastname VARCHAR(50));
+CREATE TABLE Person (Id INT IDENTITY PRIMARY KEY, LastName VARCHAR(50), FirstName VARCHAR(50));
 
-CREATE TABLE project (project_id INT IDENTITY PRIMARY KEY, project_name VARCHAR(50), person_id INT,
-		CONSTRAINT fk_person
-		FOREIGN KEY (person_id)
-			REFERENCES person(person_id));
+CREATE TABLE Project (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50), PersonId INT,
+		CONSTRAINT FK_Person
+		FOREIGN KEY (PersonId)
+			REFERENCES Person(Id));
 
-CREATE TABLE theme (theme_id INT IDENTITY PRIMARY KEY, theme_name VARCHAR(50));
+CREATE TABLE Theme (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50));
 
-CREATE TABLE question (question_id INT IDENTITY PRIMARY KEY, question_name VARCHAR(50), question_string VARCHAR(500), theme_id INT,
-		CONSTRAINT fk_theme
-		FOREIGN KEY (theme_id)
-			REFERENCES theme(theme_id));
+CREATE TABLE Question (Id INT IDENTITY PRIMARY KEY, Name VARCHAR(50), Data VARCHAR(500), ThemeId INT,
+		CONSTRAINT FK_Theme
+		FOREIGN KEY (ThemeId)
+			REFERENCES Theme(Id));
 
-CREATE TABLE theme_score (theme_score_id INT IDENTITY PRIMARY KEY, theme_id INT, project_id INT, score INT,
-		CONSTRAINT fk_project_theme_score
-		FOREIGN KEY (project_id)
-			REFERENCES project(project_id),
-		CONSTRAINT fk_theme_theme_score
-		FOREIGN KEY (theme_id)
-			REFERENCES theme(theme_id));
+CREATE TABLE ThemeScore (Id INT IDENTITY PRIMARY KEY, ThemeId INT, ProjectId INT, Score INT,
+		CONSTRAINT FK_Project_ThemeScore
+		FOREIGN KEY (ProjectId)
+			REFERENCES Project(Id),
+		CONSTRAINT FK_Theme_ThemeScore
+		FOREIGN KEY (ThemeId)
+			REFERENCES Theme(Id));
 
-CREATE TABLE answer (answer_id INT IDENTITY PRIMARY KEY, answer_string VARCHAR(500), theme_score_id INT, question_id INT,
-		CONSTRAINT fk_question
-		FOREIGN KEY (question_id)
-			REFERENCES question(question_id),
-		CONSTRAINT fk_theme_score
-		FOREIGN KEY (theme_score_id)
-			REFERENCES theme_score(theme_score_id));
+CREATE TABLE Answer (Id INT IDENTITY PRIMARY KEY, Data VARCHAR(500), ThemeScoreId INT, QuestionId INT,
+		CONSTRAINT FK_Question
+		FOREIGN KEY (QuestionId)
+			REFERENCES Question(Id),
+		CONSTRAINT FK_ThemeScore
+		FOREIGN KEY (ThemeScoreId)
+			REFERENCES ThemeScore(Id));
 
-CREATE TABLE commitment (commitment_id INT IDENTITY PRIMARY KEY, description VARCHAR(500), target_date DATE, project_id INT,
-		CONSTRAINT fk_project_commitment
-		FOREIGN KEY (project_id)
-			REFERENCES project(project_id));
+CREATE TABLE Commitment (Id INT IDENTITY PRIMARY KEY, Description VARCHAR(500), TargetDate DATE, ProjectId INT,
+		CONSTRAINT FK_Project_Commitment
+		FOREIGN KEY (ProjectId)
+			REFERENCES Project(Id));
 
-CREATE TABLE submission (submission_id INT IDENTITY PRIMARY KEY, comment VARCHAR(500), picture VARBINARY(max), commitment_id INT,
-		CONSTRAINT fk_commitment
-		FOREIGN KEY (commitment_id)
-			REFERENCES commitment(commitment_id));
+CREATE TABLE Submission (Id INT IDENTITY PRIMARY KEY, Comment VARCHAR(500), Picture VARBINARY(max), CommitmentId INT,
+		CONSTRAINT FK_Commitment
+		FOREIGN KEY (CommitmentId)
+			REFERENCES Commitment(Id));

@@ -1,12 +1,16 @@
 using HITW.Business.Repositories;
+using HITW.Models;
 using HITW.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
+builder.Services.AddScoped<HitwContext>();
 builder.Services.AddScoped<IDatabaseRepository, DatabaseRepository>();
+
 
 var app = builder.Build();
 app.UseSwagger();
@@ -25,7 +29,7 @@ app.MapPost("/project", (Project p) => InMemoryProjects.Add(p));
 
 app.MapPut("/project/{id}", (int id, Project newProj) =>
 {
-    var oldProj = InMemoryProjects.Find(x => x.ProjectId == id);
+    var oldProj = InMemoryProjects.Find(x => x.Id == id);
     if (oldProj == null)
         return Results.NotFound();
     InMemoryProjects.Remove(oldProj);
@@ -43,7 +47,7 @@ app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) 
     return Results.Ok();
 });
 app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
-app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.ThemeId == id));
+app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
 
 app.Run();
 

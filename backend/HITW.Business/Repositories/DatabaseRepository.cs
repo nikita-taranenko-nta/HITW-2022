@@ -1,12 +1,20 @@
-﻿using HITW.Models.Entities;
+﻿using HITW.Models;
+using HITW.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HITW.Business.Repositories;
 
 public class DatabaseRepository : IDatabaseRepository
 {
-    public Project GetProject(int id)
+    private readonly HitwContext _hitwContext;
+
+    public DatabaseRepository(HitwContext hitwContext)
     {
-        return new Project();
+        _hitwContext = hitwContext;
+    }
+    public Project? GetProject(int id)
+    {
+        return _hitwContext.Project.SingleOrDefault(x => x.Id == id);
     }
 }
 

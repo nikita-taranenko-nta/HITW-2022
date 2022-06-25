@@ -7,7 +7,7 @@ namespace HITW.Models.Entities
 {
     public partial class Submission
     {
-        public int SubmissionId { get; set; }
+        public int Id { get; set; }
         public string Comment { get; set; }
         public byte[] Picture { get; set; }
         public int? CommitmentId { get; set; }

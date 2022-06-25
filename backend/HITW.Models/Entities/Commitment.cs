@@ -12,7 +12,7 @@ namespace HITW.Models.Entities
             Submission = new HashSet<Submission>();
         }
 
-        public int CommitmentId { get; set; }
+        public int Id { get; set; }
         public string Description { get; set; }
         public DateTime? TargetDate { get; set; }
         public int? ProjectId { get; set; }
