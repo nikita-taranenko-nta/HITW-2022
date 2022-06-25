@@ -1,0 +1,389 @@
+{
+  "uuid": "8a02be83-0b6d-428b-a140-50886c464c22",
+  "lastMigration": 20,
+  "name": "HITW",
+  "endpointPrefix": "api",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "0.0.0.0",
+  "routes": [
+    {
+      "uuid": "dd7a77d3-37c6-4e26-983f-40c9c66d1502",
+      "documentation": "",
+      "method": "post",
+      "endpoint": "projects",
+      "responses": [
+        {
+          "uuid": "52cb5bf9-4804-42f9-a247-fc4ea4a0c6cc",
+          "body": "[\r\n    {\r\n        \"id\": \"1\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 1\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"West-Vlaanderen\",\r\n            \"municipality\": \"municipality 1\",\r\n            \"producer\": \"producer 1\",\r\n            \"contactDetails\": \"phone 1\",\r\n            \"confidentialInformation\": \"confidential 1\"\r\n        },\r\n        \"preAssessment\": {}\r\n    },\r\n    {\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    },\r\n    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "c2342c8a-a44c-4bc1-9c5b-5a6e2da3e047",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "projects/:projectId",
+      "responses": [
+        {
+          "uuid": "fdedee4c-0e10-41e2-b653-dcffa2b0bf81",
+          "body": "\"1\"",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "ee42ead0-d3c2-4724-bf69-52807aedee23",
+          "body": "{\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "9a4d9f18-0ffc-4419-b275-152c131a9a89",
+          "body": "    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "cfcec432-a068-4325-a1a2-4b9c252896f2",
+      "documentation": "",
+      "method": "delete",
+      "endpoint": "projects/:projectId",
+      "responses": [
+        {
+          "uuid": "1f4d0ed6-9aca-42f1-ae77-3d16189f6e00",
+          "body": "\"1\"",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "c5e7331f-0e24-4d64-9689-deb5466ad73b",
+          "body": "{\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "8d044a83-a9ea-482c-bf55-8d4f51eead7f",
+          "body": "    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "7c240387-7972-485b-9722-1c703c6cee91",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects",
+      "responses": [
+        {
+          "uuid": "e57d7266-733c-440d-91ca-4f46e091ed11",
+          "body": "[\r\n    {\r\n        \"id\": \"1\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 1\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"West-Vlaanderen\",\r\n            \"municipality\": \"municipality 1\",\r\n            \"producer\": \"producer 1\",\r\n            \"contactDetails\": \"phone 1\",\r\n            \"confidentialInformation\": \"confidential 1\"\r\n        },\r\n        \"preAssessment\": {}\r\n    },\r\n    {\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    },\r\n    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "61f4ba16-72ac-4bca-8442-beb4b8a9128c",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "projects/:projectId",
+      "responses": [
+        {
+          "uuid": "68a11465-8749-4c85-a8a5-5ed71833a130",
+          "body": "{\r\n        \"id\": \"1\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 1\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"West-Vlaanderen\",\r\n            \"municipality\": \"municipality 1\",\r\n            \"producer\": \"producer 1\",\r\n            \"contactDetails\": \"phone 1\",\r\n            \"confidentialInformation\": \"confidential 1\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "1",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        },
+        {
+          "uuid": "8a8d30ba-8363-4300-b662-c3d9a5f79f18",
+          "body": "{\r\n        \"id\": \"2\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 2\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Antwerpen\",\r\n            \"municipality\": \"municipality 2\",\r\n            \"producer\": \"producer 2\",\r\n            \"contactDetails\": \"phone 2\",\r\n            \"confidentialInformation\": \"confidential 2\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "2",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        },
+        {
+          "uuid": "1c682f88-f39a-45f2-9236-89d916b22f42",
+          "body": "    {\r\n        \"id\": \"3\",\r\n        \"projectInfo\": {\r\n            \"userId\": \"1\",\r\n            \"productiveUnit\": \"Project 3\",\r\n            \"country\": \"Belgium\",\r\n            \"region\": \"Limburg\",\r\n            \"municipality\": \"municipality 3\",\r\n            \"producer\": \"producer 3\",\r\n            \"contactDetails\": \"phone 3\",\r\n            \"confidentialInformation\": \"confidential 3\"\r\n        },\r\n        \"preAssessment\": {}\r\n    }",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "projectId",
+              "value": "3",
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "15a9d78a-928f-4335-bf26-e3dd1fb4d90c",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "questionnaire",
+      "responses": [
+        {
+          "uuid": "13c53b06-fdfa-4f6e-9288-69f57ba22f0d",
+          "body": "[\r\n    {\r\n        \"id\": \"1\",\r\n        \"name\": \"Thema 1\",\r\n        \"questions\": [\r\n            {\r\n                \"id\": \"11\",\r\n                \"name\": \"What inputs, raw materials, equipment and products (and their level of toxicity) do you use?\\nIn what quantity? \"\r\n            },\r\n            {\r\n                \"id\": \"12\",\r\n                \"name\": \"In your opinion, how is water quality in your activity area?\\nIs it safe to drink? Does it have an unusual smell or colour?\\nDoes it contain chemical agents? Is it easily available? Is wastewater properly managed?\\nHow does this affect your activity and its benefits?\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"id\": \"2\",\r\n        \"name\": \"Thema 2\",\r\n        \"questions\": [\r\n            {\r\n                \"id\": \"21\",\r\n                \"name\": \"In your opinion, how is air quality in your activity area?\\nCan you breathe well? Is the air contaminated? Does it have an unusual smell?\\nHow does this affect your activity and its benefits?\"\r\n            },\r\n            {\r\n                \"id\": \"22\",\r\n                \"name\": \"Does your activity affect air quality? Does it generate smokes? Do you take measures to limit the potential impact of your activity on air quality?\"\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"id\": \"3\",\r\n        \"name\": \"Thema 3\",\r\n        \"questions\": [\r\n            {\r\n                \"id\": \"31\",\r\n                \"name\": \"Do you have to comply with environmental regulations when pursuing your activity?\\nDo you have any environmental certification? If so, which one(s)?\\nDo you know any (other) that could be of interest to you?\"\r\n            },\r\n            {\r\n                \"id\": \"32\",\r\n                \"name\": \"Do you think that environmental management* measures are essential to the conduct of your activity? Do you think they hold a sufficient place at the moment? Why?\\nWould you like to improve your action in that regard?\"\r\n            }\r\n        ]\r\n    }\r\n]",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    },
+    {
+      "uuid": "03d76d2d-e590-4796-a666-39a751eaa294",
+      "documentation": "",
+      "method": "put",
+      "endpoint": "themes/:themeId",
+      "responses": [
+        {
+          "uuid": "f72e690b-d381-4896-837e-1821903bb75f",
+          "body": "\"1\"",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "randomResponse": false,
+      "sequentialResponse": false
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ]
+}
