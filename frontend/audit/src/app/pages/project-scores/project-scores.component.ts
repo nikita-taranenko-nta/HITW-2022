@@ -5,6 +5,7 @@ import {ProjectService} from "../../shared/services/project.service";
 import {Thema} from "../../models/thema";
 import {ThemaService} from "../../shared/services/thema.service";
 import { Score } from 'src/app/models/Score';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-project-scores',
@@ -42,7 +43,7 @@ export class ProjectScoresComponent implements OnInit {
       {score: 3, level: "Good", justification: "Has some capacities and identifies his/her needs"},
       {score: 4, level: "High", justification: "Has all the required capacities to undertake concrete actions"}],
    };
-
+   scoresForm: FormGroup = new FormGroup({})
   constructor(
     private readonly projectService: ProjectService,
     private readonly route: ActivatedRoute,
@@ -57,9 +58,17 @@ export class ProjectScoresComponent implements OnInit {
     this.themaService.getQuestionnaire()
       .subscribe(themas => { 
         this.themas = themas
+        let questions = [];
         this.themas.forEach((thema) => {
           thema.scoreOverview = this.scoreDescription[thema.id];
+          questions.push(...thema.questions);
         });
+        questions.map(q => {
+          this.scoresForm.addControl(q.id, new FormControl(''))
+        })
       } );
+  }
+  save(){
+    console.log( this.scoresForm.value);
   }
 }
