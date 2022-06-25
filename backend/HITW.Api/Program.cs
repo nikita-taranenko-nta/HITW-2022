@@ -24,7 +24,7 @@ app.UseSwaggerUI(options =>
 app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 
-app.MapGet("/project/{id}",         (int id, IDatabaseRepository databaseRepository) =>
+app.MapGet("/projects/{id}",         (int id, IDatabaseRepository databaseRepository) =>
 {
     var project = databaseRepository.GetProject(id);
 
@@ -61,19 +61,19 @@ app.MapGet("/project/{id}",         (int id, IDatabaseRepository databaseReposit
         }).ToList()
     };
 });
-app.MapGet("/person/{id}/projects", (int id, IDatabaseRepository databaseRepository) =>
+app.MapGet("/persons/{id}/projects", (int id, IDatabaseRepository databaseRepository) =>
 {
     return databaseRepository.GetProjects();
 });
-app.MapPost("/project",              (Project project, IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
+app.MapPost("/projects",              (Project project, IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
 
 
-//app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
+app.MapGet("/projects",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
 
 //app.MapPut("/project/{id}", (int id, Project p, IDatabaseRepository databaseRepository) => databaseRepository.Update(p));
 
 
-app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) =>
+app.MapDelete("/projects/{id}", (int id, IDatabaseRepository databaseRepository) =>
 {
     var item = databaseRepository.GetProjects();
     if (item == null)
@@ -81,7 +81,7 @@ app.MapDelete("/project/{id}", (int id, IDatabaseRepository databaseRepository) 
     //databaseRepository.Remove(item);
     return Results.Ok();
 });
-app.MapGet("/producer/{name}", (string name) => { throw new NotImplementedException(); });
+app.MapGet("/producers/{name}", (string name) => { throw new NotImplementedException(); });
 //app.MapPut("/themeScore/{id}", (int id) => InMemoryThemeScore.Find(t => t.Id == id));
 
 app.MapGet("/questionnaire", (IDatabaseRepository databaseRepository) =>
@@ -92,35 +92,3 @@ app.MapGet("/questionnaire", (IDatabaseRepository databaseRepository) =>
 });
 
 app.Run();
-
-public partial class Program
-{
-}
-
-//-UserId: int
-//        -Productive unit: string Companyname
-//        -Country: 2 letters
-//        - Region / Province: string
-//        -Municipality / District: string
-//        -Producer: Boer->search after 3 characters
-//        - Contact details: free text
-//        -Confidential information: Free text(big text area)
-
-//POST   /projects
-//PUT    /projects/{id}
-//DELETE /projects/{id}
-
-//	- UserId: int
-//	- Productive unit: string Companyname
-//	- Country: 2 letters
-//	- Region/Province: string
-//	- Municipality/District: string
-//	- Producer: Boer -> search after 3 characters
-//	- Contact details: free text
-//	- Confidential information: Free text (big text area)
-	
-//GET  /projects
-//	 /projects/{id}
-//	 Thema {Id, Name, List<Question> questions} Question {Id, Name}
-	
-//PUT /theme/{id} => List<QuestionAnswer> {question id, string answer}, totalscore int, string free text field

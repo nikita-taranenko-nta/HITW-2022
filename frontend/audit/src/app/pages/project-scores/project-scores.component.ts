@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Project} from 'src/app/models/project';
 import {ProjectService} from "../../shared/services/project.service";
-import {Thema} from "../../models/thema";
-import {ThemaService} from "../../shared/services/thema.service";
-import { ThemaResponse } from 'src/app/models/thema-response';
+import {theme} from "../../models/theme";
+import {themeService} from "../../shared/services/theme.service";
+import { themeResponse } from 'src/app/models/theme-response';
 import { QuestionAnswer } from 'src/app/models/question-answer';
 
 @Component({
@@ -15,7 +15,7 @@ import { QuestionAnswer } from 'src/app/models/question-answer';
 export class ProjectScoresComponent implements OnInit {
   public projectId: string;
   public project: Project;
-  public themas: Thema[];
+  public themes: theme[];
   themeResponses = {};
   displayedColumns = ['level','justification', 'score']
   displayedColumns2 = ['actors','typeOfSupport','themes','peopleInvolved', 'waysItHelped']
@@ -48,7 +48,7 @@ export class ProjectScoresComponent implements OnInit {
   constructor(
     private readonly projectService: ProjectService,
     private readonly route: ActivatedRoute,
-    private readonly themaService: ThemaService,
+    private readonly themeService: themeService
     private router: Router
   ) {
   }
@@ -57,18 +57,18 @@ export class ProjectScoresComponent implements OnInit {
     this.projectId = this.route.snapshot.paramMap.get('projectid');
     this.projectService.getProject(this.projectId)
       .subscribe(project => this.project = project);
-    this.themaService.getQuestionnaire()
-      .subscribe(themas => { 
-        this.themas = themas
+    this.themeService.getQuestionnaire()
+      .subscribe(themes => { 
+        this.themes = themes
         let questions = [];
-        this.themas.forEach((thema) => {
-          thema.scoreOverview = this.scoreDescription[thema.id];
-          questions.push(...thema.questions);
-          this.themeResponses[thema.id] = {
+        this.themes.forEach((theme) => {
+          theme.scoreOverview = this.scoreDescription[theme.id];
+          questions.push(...theme.questions);
+          this.themeResponses[theme.id] = {
             totalScore:0,
             questionAnswers:[],
             freeTextField: ''
-          } as ThemaResponse
+          } as themeResponse
         });
       } );
   }
@@ -82,7 +82,7 @@ export class ProjectScoresComponent implements OnInit {
     console.log("");
   }
   save(themeId: string){
-    this.themaService.putThemaResponse(themeId, this.themeResponses[themeId]);
+    this.themeService.putthemeResponse(themeId, this.themeResponses[themeId]);
    }
 
    back() {

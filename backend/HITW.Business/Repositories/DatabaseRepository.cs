@@ -117,7 +117,6 @@ public class DatabaseRepository : IDatabaseRepository
 
     public List<Project> GetProjects()
     {
-        //return _hitwContext.Project.Where(x => x.PersonId == personId).ToList();
         return _hitwContext.Projects.ToList();
     }
 
