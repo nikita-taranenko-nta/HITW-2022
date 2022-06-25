@@ -1,1 +1,0 @@
-﻿public record Producer(uint Id, string Name);
