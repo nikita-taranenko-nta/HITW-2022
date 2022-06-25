@@ -15,13 +15,15 @@ import {MatInputModule} from '@angular/material/input';
 import { ProjectComponent } from './pages/project/project.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectScoresComponent } from './pages/project-scores/project-scores.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     CreateProjectFormComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectScoresComponent
   ],
   imports: [
     BrowserModule,
