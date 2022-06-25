@@ -1,0 +1,67 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "HitwContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "..\/HITW.Models",
+   "OutputPath": "Entities",
+   "ProjectRootNamespace": "HITW.Models",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Answer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Commitment]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Person]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Project]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Question]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Submission]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Theme]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ThemeScore]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "d208998f4c59.hitw",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}
