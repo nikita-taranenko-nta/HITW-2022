@@ -7,6 +7,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
+builder.Services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
 builder.Services.AddScoped<HitwContext>();
 builder.Services.AddScoped<IDatabaseRepository, DatabaseRepository>();
 
@@ -21,10 +23,12 @@ app.UseSwaggerUI(options =>
 });
 
 
-app.MapGet("/project/{id}", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProjects(id));
-//app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
+app.MapGet("/project/{id}",         (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProject(id));
+app.MapGet("/person/{id}/projects", (int id, IDatabaseRepository databaseRepository) => databaseRepository.GetProjects(id));
+app.MapPost("/project",              (Project project, IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
 
-app.MapPost("/project", (Project project , IDatabaseRepository databaseRepository) => databaseRepository.AddProject(project));
+
+//app.MapGet("/project",      (IDatabaseRepository databaseRepository) => databaseRepository.GetProjects());
 
 //app.MapPut("/project/{id}", (int id, Project p, IDatabaseRepository databaseRepository) => databaseRepository.Update(p));
 

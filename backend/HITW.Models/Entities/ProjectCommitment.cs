@@ -9,7 +9,7 @@ namespace HITW.Models.Entities
     {
         public ProjectCommitment()
         {
-            Commitment = new HashSet<Commitment>();
+            Commitments = new HashSet<Commitment>();
         }
 
         public int Id { get; set; }
@@ -17,6 +17,6 @@ namespace HITW.Models.Entities
         public int? ProjectId { get; set; }
 
         public virtual Project Project { get; set; }
-        public virtual ICollection<Commitment> Commitment { get; set; }
+        public virtual ICollection<Commitment> Commitments { get; set; }
     }
 }

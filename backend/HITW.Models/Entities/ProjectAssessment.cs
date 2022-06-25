@@ -9,8 +9,8 @@ namespace HITW.Models.Entities
     {
         public ProjectAssessment()
         {
-            Assessment = new HashSet<Assessment>();
-            ProjectAssessmentLessonLearned = new HashSet<ProjectAssessmentLessonLearned>();
+            Assessments = new HashSet<Assessment>();
+            ProjectAssessmentLessonLearneds = new HashSet<ProjectAssessmentLessonLearned>();
         }
 
         public int Id { get; set; }
@@ -18,7 +18,7 @@ namespace HITW.Models.Entities
         public int? ProjectId { get; set; }
 
         public virtual Project Project { get; set; }
-        public virtual ICollection<Assessment> Assessment { get; set; }
-        public virtual ICollection<ProjectAssessmentLessonLearned> ProjectAssessmentLessonLearned { get; set; }
+        public virtual ICollection<Assessment> Assessments { get; set; }
+        public virtual ICollection<ProjectAssessmentLessonLearned> ProjectAssessmentLessonLearneds { get; set; }
     }
 }

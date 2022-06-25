@@ -9,14 +9,14 @@ namespace HITW.Models.Entities
     {
         public TermsOfUseQuestion()
         {
-            ProjectTermsOfUseAnswer = new HashSet<ProjectTermsOfUseAnswer>();
-            TermsOfUseAnswer = new HashSet<TermsOfUseAnswer>();
+            ProjectTermsOfUseAnswers = new HashSet<ProjectTermsOfUseAnswer>();
+            TermsOfUseAnswers = new HashSet<TermsOfUseAnswer>();
         }
 
         public int Id { get; set; }
         public string Data { get; set; }
 
-        public virtual ICollection<ProjectTermsOfUseAnswer> ProjectTermsOfUseAnswer { get; set; }
-        public virtual ICollection<TermsOfUseAnswer> TermsOfUseAnswer { get; set; }
+        public virtual ICollection<ProjectTermsOfUseAnswer> ProjectTermsOfUseAnswers { get; set; }
+        public virtual ICollection<TermsOfUseAnswer> TermsOfUseAnswers { get; set; }
     }
 }

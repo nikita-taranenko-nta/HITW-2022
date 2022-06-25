@@ -1,5 +1,6 @@
 ﻿using HITW.Models;
 using HITW.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HITW.Business.Repositories;
 
@@ -14,12 +15,39 @@ public class DatabaseRepository : IDatabaseRepository
 
     public Project? GetProject(int id)
     {
-        return _hitwContext.Project.SingleOrDefault(x => x.Id == id);
+        return _hitwContext.Projects
+                           .Include(x => x.ThemeScores).ThenInclude(x => x.Answers).ThenInclude(x => x.Question)
+                           .Include(x => x.ThemeScores).ThenInclude(x => x.Theme)
+                           .SingleOrDefault(x => x.Id == id);
+    }
+
+    public List<Project> GetProjects(int personId)
+    {
+        return _hitwContext.Projects.Where(x => x.PersonId == personId).ToList();
     }
 
     public void AddProject(Project project)
     {
-        _hitwContext.Project.Add(project);
+        _hitwContext.Projects.Add(project);
+
+        _hitwContext.SaveChanges();
+
+        var themeScores = _hitwContext.Themes.Select(x => new ThemeScore{ProjectId = project.Id, ThemeId = x.Id, }).ToList();
+        _hitwContext.ThemeScores.AddRange(themeScores);
+
+        _hitwContext.SaveChanges();
+
+        foreach (var themeScore in themeScores)
+        {
+            var answers = _hitwContext.Questions.Where(x => x.ThemeId == themeScore.ThemeId).Select(x => new Answer
+            {
+                QuestionId   = x.Id,
+                ThemeScoreId = themeScore.Id
+            }).ToList();
+
+            _hitwContext.Answers.AddRange(answers);
+        }
+
         _hitwContext.SaveChanges();
     }
 
@@ -27,7 +55,7 @@ public class DatabaseRepository : IDatabaseRepository
     {
         try
         {
-            _hitwContext.Project.Update(project);
+            _hitwContext.Projects.Update(project);
             _hitwContext.SaveChanges();
         }
         catch (Exception e)
@@ -40,26 +68,26 @@ public class DatabaseRepository : IDatabaseRepository
 
     public void RemoveProject(int id)
     {
-        var project = _hitwContext.Project.SingleOrDefault(x => x.Id == id);
+        var project = _hitwContext.Projects.SingleOrDefault(x => x.Id == id);
 
         if (project == null)
         {
             return;
         }
 
-        _hitwContext.Project.Remove(project);
+        _hitwContext.Projects.Remove(project);
         _hitwContext.SaveChanges();
     }
 
     public void UpdateTheme(Theme theme)
     {
-        _hitwContext.Theme.Add(theme);
+        _hitwContext.Themes.Add(theme);
         _hitwContext.SaveChanges();
     }
 
     public void UpdateThemeIdentifiedActions(int themeScoreId, string? producerActions, string? teamActions)
     {
-        var identifiedAction = _hitwContext.IdentifiedAction.Single(x => x.ThemeScoreId == themeScoreId);
+        var identifiedAction = _hitwContext.IdentifiedActions.Single(x => x.ThemeScoreId == themeScoreId);
 
         if (producerActions != null)
         {
@@ -73,23 +101,18 @@ public class DatabaseRepository : IDatabaseRepository
             identifiedAction.Actor = "Team";
         }
 
-        _hitwContext.IdentifiedAction.Update(identifiedAction);
+        _hitwContext.IdentifiedActions.Update(identifiedAction);
         _hitwContext.SaveChanges();
     }
 
     public void UpdateLessonsLearned(int projectId, bool isProducer, string answer)
     {
-        var projectLessonLearned = _hitwContext.ProjectLessonLearned.Single(x => x.ProjectId == projectId);
+        var projectLessonLearned = _hitwContext.ProjectLessonLearneds.Single(x => x.ProjectId == projectId);
         projectLessonLearned.Data = answer;
         projectLessonLearned.IsProducer = isProducer;
 
-        _hitwContext.ProjectLessonLearned.Update(projectLessonLearned);
+        _hitwContext.ProjectLessonLearneds.Update(projectLessonLearned);
         _hitwContext.SaveChanges();
-    }
-
-    public List<Project> GetProjects(int personId)
-    {
-        return _hitwContext.Project.Where(x => x.PersonId == personId).ToList();
     }
 }
 

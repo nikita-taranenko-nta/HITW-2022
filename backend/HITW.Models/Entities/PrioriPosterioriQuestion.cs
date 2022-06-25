@@ -9,14 +9,12 @@ namespace HITW.Models.Entities
     {
         public PrioriPosterioriQuestion()
         {
-            PrioriPosterioriValue = new HashSet<PrioriPosterioriValue>();
+            PrioriPosterioriValues = new HashSet<PrioriPosterioriValue>();
         }
 
         public int Id { get; set; }
         public string Question { get; set; }
-        public int? ProjectId { get; set; }
 
-        public virtual Project Project { get; set; }
-        public virtual ICollection<PrioriPosterioriValue> PrioriPosterioriValue { get; set; }
+        public virtual ICollection<PrioriPosterioriValue> PrioriPosterioriValues { get; set; }
     }
 }

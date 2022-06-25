@@ -9,9 +9,9 @@ namespace HITW.Models.Entities
     {
         public ThemeScore()
         {
-            Answer = new HashSet<Answer>();
-            CapAndNeed = new HashSet<CapAndNeed>();
-            IdentifiedAction = new HashSet<IdentifiedAction>();
+            Answers = new HashSet<Answer>();
+            CapAndNeeds = new HashSet<CapAndNeed>();
+            IdentifiedActions = new HashSet<IdentifiedAction>();
         }
 
         public int Id { get; set; }
@@ -22,8 +22,8 @@ namespace HITW.Models.Entities
 
         public virtual Project Project { get; set; }
         public virtual Theme Theme { get; set; }
-        public virtual ICollection<Answer> Answer { get; set; }
-        public virtual ICollection<CapAndNeed> CapAndNeed { get; set; }
-        public virtual ICollection<IdentifiedAction> IdentifiedAction { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<CapAndNeed> CapAndNeeds { get; set; }
+        public virtual ICollection<IdentifiedAction> IdentifiedActions { get; set; }
     }
 }

@@ -9,15 +9,15 @@ namespace HITW.Models.Entities
     {
         public Person()
         {
-            ProjectPerson = new HashSet<Project>();
-            ProjectProducer = new HashSet<Project>();
+            ProjectPeople = new HashSet<Project>();
+            ProjectProducers = new HashSet<Project>();
         }
 
         public int Id { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
 
-        public virtual ICollection<Project> ProjectPerson { get; set; }
-        public virtual ICollection<Project> ProjectProducer { get; set; }
+        public virtual ICollection<Project> ProjectPeople { get; set; }
+        public virtual ICollection<Project> ProjectProducers { get; set; }
     }
 }

@@ -9,14 +9,14 @@ namespace HITW.Models.Entities
     {
         public Theme()
         {
-            Question = new HashSet<Question>();
-            ThemeScore = new HashSet<ThemeScore>();
+            Questions = new HashSet<Question>();
+            ThemeScores = new HashSet<ThemeScore>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Question> Question { get; set; }
-        public virtual ICollection<ThemeScore> ThemeScore { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<ThemeScore> ThemeScores { get; set; }
     }
 }

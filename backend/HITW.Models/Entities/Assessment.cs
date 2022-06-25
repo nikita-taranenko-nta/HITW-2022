@@ -9,7 +9,7 @@ namespace HITW.Models.Entities
     {
         public Assessment()
         {
-            CommitmentAssessment = new HashSet<CommitmentAssessment>();
+            CommitmentAssessments = new HashSet<CommitmentAssessment>();
         }
 
         public int Id { get; set; }
@@ -19,6 +19,6 @@ namespace HITW.Models.Entities
         public bool? IsProducer { get; set; }
 
         public virtual ProjectAssessment ProjectAssessment { get; set; }
-        public virtual ICollection<CommitmentAssessment> CommitmentAssessment { get; set; }
+        public virtual ICollection<CommitmentAssessment> CommitmentAssessments { get; set; }
     }
 }
